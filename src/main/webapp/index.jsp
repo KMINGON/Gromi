@@ -19,6 +19,7 @@
             padding-left: 50px;
         }
     </style>
+    <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -71,6 +72,78 @@
 
 
     <!--코드 작성-->
+    <main>
+    	<!-- 인디케이터 포함 캐러셀 --> 
+    	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+		  <div class="carousel-inner">
+		  <!-- data-bs-interval : 슬라이드 지연 시간 -->
+		    <div class="carousel-item active" data-bs-interval="1000">
+		     <h3 class="text-center fw-small">첫번째 공지사항</h3>
+			
+		    </div>
+		    <div class="carousel-item" data-bs-interval="1000">
+		     <h3 class="text-center fw-normal">두번째 공지사항</h3>
+		    </div>
+		    <div class="carousel-item" data-bs-interval="1000">
+		     <h3 class="text-center fw-normal">세번째 공지사항</h3>
+		    </div>
+		  </div>
+		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="visually-hidden">Previous</span>
+		  </button>
+		  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="visually-hidden">Next</span>
+		  </button>
+		</div>
+		
+    
+        <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+          <div class="col-md-5 p-lg-5 mx-auto my-5">
+            <h1 class="display-4 fw-bold text-wrap">GROMI 식물커뮤니티</h1>
+            <p class="lead fw-bold">알고싶은 식물을 검색하고 원하는 식물에 대해 찾아보세요!</p>
+            <a class="btn btn-outline-secondary" href="./plantList.jsp">많은 식물 알아보기</a>
+          </div>
+          
+          <div class="product-plant shadow-sm d-none d-md-block"></div>
+          <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+        </div>
+      
+        <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+          <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+            <div class="my-3 py-3">
+              <h2 class="display-5 fw-normal">식물 추천</h2>
+              <p class="lead fw-normal">그로미의 추천을 받아 당신의 식물을 찾아보세요.</p>
+            </div>
+            <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+          </div>
+          <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+            <div class="my-3 p-3">
+              <h2 class="display-5 fw-normal">커뮤니티</h2>
+              <p class="lead fw-normal">당신의 식물을 공유해보세요.</p>
+            </div>
+            <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+          </div>
+        </div>
+      
+        <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+          <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+            <div class="my-3 p-3">
+              <h2 class="display-5">Another headline</h2>
+              <p class="lead">And an even wittier subheading.</p>
+            </div>
+            <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+          </div>
+          <div class="text-bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+            <div class="my-3 py-3">
+              <h2 class="display-5">Another headline</h2>
+              <p class="lead">And an even wittier subheading.</p>
+            </div>
+            <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+          </div>
+        </div>
+      </main>
 
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
