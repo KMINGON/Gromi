@@ -1,14 +1,9 @@
 <%@ page contentType="text/html" pageEncoding="utf-8"%>
 <%@ page import ="java.sql.*" %>
+<%@ page import ="model.ConnectMysql" %>
 <%
     //String sql = "SELECT * FROM userList";
-
-    Class.forName("com.mysql.jdbc.Driver"); 
-    
-    String jdbcDriver ="jdbc:mysql://49.50.174.5:3306/TestDB?serverTimezone=UTC"; 
-    String dbUser ="gon"; //mysql id
-    String dbPass ="20193172"; //mysql password
-    Connection conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+    Connection conn = new ConnectMysql().getConn();
 
     //Statement stmt = conn.createStatement();
     String sql = "SELECT * FROM userList";

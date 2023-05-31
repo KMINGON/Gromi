@@ -59,9 +59,8 @@
                             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                 aria-expanded="false">마이페이지</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="login/signin.jsp">로그인</a></li>
+                                <li><a class="dropdown-item" href="login/signup.jsp">회원가입</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -47,9 +47,10 @@
 						class="nav-link dropdown-toggle active" href="#"
 						data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 						<ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="../login/signin.jsp">로그인</a></li>
-                                <li><a class="dropdown-item" href="../login/signup.jsp">회원가입</a></li>
-                            </ul></li>
+							<li><a class="dropdown-item" href="../board/viewBoard.jsp?boardType=free">자유 게시판</a></li>
+                            <li><a class="dropdown-item" href="../board/viewBoard.jsp?boardType=QA">Q&A 게시판</a></li>
+                            <li><a class="dropdown-item" href="../board/viewBoard.jsp?boardType=sale">분양 게시판</a></li>
+						</ul></li>
 				</ul>
 
 				<div class="justify-content-end">
@@ -58,8 +59,8 @@
 							class="nav-link dropdown-toggle" href="#"
 							data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
 							<ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="../login/signin.jsp">로그인</a></li>
-                                <li><a class="dropdown-item" href="../login/signup.jsp">회원가입</a></li>
+                                <li><a class="dropdown-item" href="signin.jsp">로그인</a></li>
+                                <li><a class="dropdown-item" href="signup.jsp">회원가입</a></li>
                             </ul></li>
 					</ul>
 				</div>
@@ -69,36 +70,38 @@
 
 
 	<!--코드 작성 시작-->
-	<div class="container mt-5">
-		<div class="row justify-content-center">
-			<div class="col-lg-10">
-				<h1 class="mb-2">게시글 제목</h1>
-				<small class="text-muted">작성자 · 2021-01-01 · 조회수 1</small>
-				<hr>
-				<div class="mt-3 mb-3">
-					<p>게시글 내용이 표시되는 영역입니다. 이곳에 게시글의 내용을 작성하십시오.</p>
-				</div>
-				<hr>
-				<h5 class="mb-3">댓글 작성</h5>
-				<form>
-					<textarea class="form-control mb-3" rows="3"
-						placeholder="댓글을 입력하세요..."></textarea>
-					<button type="submit" class="btn btn-primary">작성</button>
-				</form>
+	<!DOCTYPE html>
+  <div class="container">
+    <div class="row vh-100 justify-content-center align-items-center">
+        <div class="col-md-4">
+            <div class="card border-0">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">로그인</h2>
+                    <form>
+                        <div class="mb-3">
+                            <label for="inputEmail" class="form-label">아이디</label>
+                            <input type="email" class="form-control" id="inputEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputPassword" class="form-label">비밀번호</label>
+                            <input type="password" class="form-control" id="inputPassword" required>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <button type="submit" class="btn btn-primary">로그인</button>
+                            <button type="button" class="btn btn-secondary">회원가입</button>
+                        </div>
+                        <div class="text-center mt-2">
+                            <small class="text-muted">
+                                <a href="#">아이디 찾기</a> / <a href="#">비밀번호 찾기</a>
+                            </small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-				<hr>
-				<h5 class="mb-3">댓글 목록</h5>
-				<div class="mb-3">
-					<strong>댓글 작성자</strong> · <small>2021-01-02</small>
-					<p>댓글 내용이 표시되는 영역입니다.</p>
-				</div>
-				<div class="mb-3">
-					<strong>댓글 작성자</strong> · <small>2021-01-03</small>
-					<p>댓글 내용이 표시되는 영역입니다.</p>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!--코드 작성 종료-->
 
