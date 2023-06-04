@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!doctype html>
-<%
-String uid = (String)session.getAttribute("user_id");
-String uname = (String)session.getAttribute("user_name");
-%>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -87,30 +83,27 @@ String uname = (String)session.getAttribute("user_name");
 	<header>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="main-navbar">
         <div class="container">
-            <a class="navbar-brand" href="index.jsp">Gromi</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBoard"
-                aria-controls="navBoard" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="index.html">Gromi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03"
+                aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id = "navBoard">
+            <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.jsp">홈</a>
+                        <a class="nav-link active" aria-current="page" href="index.html">홈</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="recommend/recommend.html">식물 추천</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">블로그</a>
+                        <a class="nav-link" href="#">식물 추천</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                             aria-expanded="false">커뮤니티</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="board/viewBoard.jsp?boardType=free">자유 게시판</a></li>
-                            <li><a class="dropdown-item" href="board/viewBoard.jsp?boardType=QA">Q&A 게시판</a></li>
-                            <li><a class="dropdown-item" href="board/viewBoard.jsp?boardType=sale">분양 게시판</a></li>
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -118,21 +111,13 @@ String uname = (String)session.getAttribute("user_name");
                 <div class="justify-content-end">
                     <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                         <li class="nav-item dropdown">
-                                <%if(uid == null) {%>
                             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                 aria-expanded="false">마이페이지</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="login/signin.jsp">로그인</a></li>
-                                <li><a class="dropdown-item" href="login/signup.jsp">회원가입</a></li>
+                                <li><a class="dropdown-item" href="#">회원정보</a></li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                                <li><a class="dropdown-item" href="#"></a></li>
                             </ul>
-                            <%} else{%>
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                aria-expanded="false"><%=uname %></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">개인정보수정</a></li>
-                                <li><a class="dropdown-item" href="login/logout.jsp">로그아웃</a></li>
-                            </ul>
-                            <%} %>
                         </li>
                     </ul>
                 </div>
@@ -173,7 +158,7 @@ String uname = (String)session.getAttribute("user_name");
       
    		<% for(int i=0;i<9;i++){ %>
         <div class="col">
-          <div class="card shadow-sm" type="button" onclick="location.href='plantDetail.jsp'">
+          <div class="card shadow-sm" type="button" onclick="location.href='gardenList.jsp'">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
             <div class="card-body">
               <p class="card-text">식물이름</p>
