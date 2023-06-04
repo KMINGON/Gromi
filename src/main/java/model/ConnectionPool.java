@@ -8,7 +8,7 @@ public class ConnectionPool {
     private Connection connection;
 
     private ConnectionPool() {
-        this.connection = new ConnectMysql().getConn();
+        this.connection = new ConnectMaria().getConn();
     }
 
     public static ConnectionPool getInstance() {

@@ -4,6 +4,10 @@
 <%String boardType = request.getParameter("boardType"); %>
 <!DOCTYPE html>
 <html lang="en">
+<%
+String uid = (String)session.getAttribute("user_id");
+String uname = (String)session.getAttribute("user_name");
+%>
 
 <head>
 <meta charset="UTF-8">
@@ -71,14 +75,24 @@
 
 				<div class="justify-content-end">
 					<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
-							<ul class="dropdown-menu">
+                        <li class="nav-item dropdown">
+                                <%if(uid == null) {%>
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                aria-expanded="false">마이페이지</a>
+                            <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="../login/signin.jsp">로그인</a></li>
                                 <li><a class="dropdown-item" href="../login/signup.jsp">회원가입</a></li>
-                            </ul></li>
-					</ul>
+                            </ul>
+                            <%} else{%>
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                aria-expanded="false"><%=uname %></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">개인정보수정</a></li>
+                                <li><a class="dropdown-item" href="../login/logout.jsp">로그아웃</a></li>
+                            </ul>
+                            <%} %>
+                        </li>
+                    </ul>
 				</div>
 			</div>
 		</div>

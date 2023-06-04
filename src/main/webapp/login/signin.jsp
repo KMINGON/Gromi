@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+<%
+String uid = (String)session.getAttribute("user_id");
+String uname = (String)session.getAttribute("user_name");
+%>
 
 <head>
 <meta charset="UTF-8">
@@ -55,14 +59,24 @@
 
 				<div class="justify-content-end">
 					<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
-							<ul class="dropdown-menu">
+                        <li class="nav-item dropdown">
+                                <%if(uid == null) {%>
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                aria-expanded="false">마이페이지</a>
+                            <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="signin.jsp">로그인</a></li>
                                 <li><a class="dropdown-item" href="signup.jsp">회원가입</a></li>
-                            </ul></li>
-					</ul>
+                            </ul>
+                            <%} else{%>
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                aria-expanded="false"><%=uname %></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">개인정보수정</a></li>
+                                <li><a class="dropdown-item" href="logout.jsp">로그아웃</a></li>
+                            </ul>
+                            <%} %>
+                        </li>
+                    </ul>
 				</div>
 			</div>
 		</div>
@@ -77,14 +91,14 @@
             <div class="card border-0">
                 <div class="card-body">
                     <h2 class="card-title text-center mb-4">로그인</h2>
-                    <form>
+                    <form action = "signinAction.jsp">
                         <div class="mb-3">
                             <label for="inputEmail" class="form-label">아이디</label>
-                            <input type="email" class="form-control" id="inputEmail" required>
+                            <input type="text" class="form-control" id="inputEmail" name = "inputEmail" required>
                         </div>
                         <div class="mb-3">
                             <label for="inputPassword" class="form-label">비밀번호</label>
-                            <input type="password" class="form-control" id="inputPassword" required>
+                            <input type="password" class="form-control" id="inputPassword" name = "inputPassword" required>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <button type="submit" class="btn btn-primary">로그인</button>
