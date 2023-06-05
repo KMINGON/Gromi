@@ -19,7 +19,7 @@
 	
 	UserDAO userDAO = new UserDAO();
 	
-	if (pw.equals(cpw)) {
+	if (!pw.equals(cpw)) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('비밀번호가 일치하지 않습니다!')");

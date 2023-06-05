@@ -1,22 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="model.ConnectMysql"%>
-<%@ page import="model.boarddata.BoardDAO"%>
-<%@ page import="model.boarddata.Board"%>
-<%@ page import="java.util.ArrayList"%>
-<%
-String boardType = request.getParameter("boardType");
-String pageTemp = request.getParameter("page");
-Integer pageNum;
-if(pageTemp == null) pageNum = 1;
-else pageNum = Integer.parseInt(pageTemp);
-%>
 <!DOCTYPE html>
 <html lang="en">
 <%
 String uid = (String) session.getAttribute("user_id");
 String uname = (String) session.getAttribute("user_name");
-BoardDAO boardDAO = new BoardDAO();
+String boardType = request.getParameter("boardType");
 %>
 
 <head>
@@ -37,20 +26,6 @@ BoardDAO boardDAO = new BoardDAO();
 <style>
 .nav-item {
 	padding-left: 50px;
-}
-</style>
-<style>
-.board {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-}
-</style>
-<style>
-.post-row:hover {
-	background-color: #f8f9fa;
-	cursor: pointer;
 }
 </style>
 </head>
@@ -98,8 +73,8 @@ BoardDAO boardDAO = new BoardDAO();
 								<li><a class="dropdown-item" href="../login/signin.jsp">로그인</a></li>
 								<li><a class="dropdown-item" href="../login/signup.jsp">회원가입</a></li>
 							</ul> <%
- } else {
- %> <a class="nav-link dropdown-toggle" href="#"
+ 							} else {
+ 							%> <a class="nav-link dropdown-toggle" href="#"
 							data-bs-toggle="dropdown" aria-expanded="false"><%=uname%></a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="#">개인정보수정</a></li>
@@ -114,83 +89,36 @@ BoardDAO boardDAO = new BoardDAO();
 		</div>
 	</nav>
 
-
 	<!--코드 작성 시작-->
-
-	<div class="container mt-5">
-		<div class="row justify-content-center">
-			<div class="col-lg-10">
-				<%
-				if (boardType == null || boardType.equals("free")) {
-					boardType = "free";
-				%>
-				<h1 class="mb-4">자유 게시판</h1>
-				<%
-				} else if (boardType.equals("QA")) {
-				%>
-				<h1 class="mb-4">Q&A 게시판</h1>
-				<%
-				} else if (boardType.equals("sale")) {
-				%>
-				<h1 class="mb-4">분양 게시판</h1>
-				<%
-				}
-				ArrayList<Board> boards = (ArrayList) boardDAO.findByBdType(boardType);
-				int postCnt = boards.size();
-				int pageCnt = 0;
-				if(postCnt%4 == 0) pageCnt = postCnt/4;
-				else pageCnt = postCnt/4 + 1;
-				int startPage = (pageNum - 1) * 4;
-				int lastPage = (pageNum * 4);
-				int nextPage = pageNum + 1;
-				if(nextPage > pageCnt) nextPage = pageCnt;
-				int prevPage = pageNum - 1;
-				if(prevPage < 1) prevPage = 1;
-				if(lastPage > postCnt) lastPage = postCnt;
-				
-				%>
-				<table class="table">
-					<tbody>
-						<%
-						for (int i = startPage; i < lastPage; i++) {
-							Board board = boards.get(i);
-						%>
-						<tr class="border-bottom border-1 post-row"
-							onclick="location.href='viewPost.jsp?bdNo=<%=board.getBdNo() %>'">
-							<td><strong><%=board.getBdTitle() %></strong><br> 
-							<small><%=board.getBdContent() %></small><br> 
-							<span><%=board.getUserName() %></span> · 
-							<span><%=board.getBdDate() %></span> · 
-							<span>조회수 <%=board.getBdViewCnt() %></span></td>
-						</tr>
-						<%
-						}
-						%>
-					</tbody>
-				</table>
-				<div class="d-flex justify-content-between align-items-center">
-					<nav aria-label="Page navigation">
-						<ul class="pagination">
-							<li class="page-item"><a class="page-link" href="viewBoard.jsp?boardType=<%=boardType%>&page=<%=prevPage%>"
-								>이전</a></li>
-								<%for(int i = 1; i <= pageCnt; i++){ 
-								if(i == pageNum){%>
-							<li class="page-item active"><a class="page-link" href="#"><%=i%></a></li>
-							<%}else{ %>
-							<li class="page-item"><a class="page-link" href="viewBoard.jsp?boardType=<%=boardType%>&page=<%=i%>"><%=i%></a></li>
-							<%}}%>
-							<li class="page-item"><a class="page-link" href="viewBoard.jsp?boardType=<%=boardType%>&page=<%=nextPage%>">다음</a></li>
-						</ul>
-					</nav>
-					<button type="button" class="btn btn-outline-dark"
-						onclick=<%if (uid != null) {%> "location.href='createPost.jsp?boardType=<%=boardType %>'
-						"<%} else {%>"alert('로그인을 해주세요!')"<%}%>>게시글 작성</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
+	 <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card" style="border:black;">
+          <div class="card-header bg-dark text-white">
+            <h3>게시글 작성</h3>
+          </div>
+          <div class="card-body">
+            <form action = "createPostAction.jsp">
+              <div class="form-group">
+                <label for="title" class="font-weight-bold">제목</label>
+                <input type="text" class="form-control" id="title" name = "title" placeholder="제목을 입력하세요" required>
+              </div>
+              <div class="form-group">
+                <label for="content" class="font-weight-bold">내용</label>
+                <textarea class="form-control" id="content" name = "content" rows="10" placeholder="내용을 입력하세요" required></textarea>
+              </div>
+              <div class="form-group d-flex justify-content-end">
+                <button type="submit" class="btn btn-dark mr-2">작성완료</button>
+                <button type="button" class="btn btn-outline-dark" onclick="history.back();">취소</button>
+              </div>
+              <%System.out.print(boardType); %>
+              <input type="hidden" name="boardType" value="<%=boardType%>">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 	<!--코드 작성 종료-->
 
@@ -225,4 +153,5 @@ BoardDAO boardDAO = new BoardDAO();
 		</footer>
 	</div>
 </body>
+
 </html>

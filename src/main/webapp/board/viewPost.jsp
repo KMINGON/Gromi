@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="model.boarddata.BoardDAO"%>
+<%@ page import="model.boarddata.Board"%>
 <!DOCTYPE html>
 <html lang="en">
 <%
 String uid = (String)session.getAttribute("user_id");
 String uname = (String)session.getAttribute("user_name");
+Integer bdNo = Integer.parseInt(request.getParameter("bdNo"));
+BoardDAO boardDAO = new BoardDAO();
+Board board = boardDAO.findById(bdNo);
+board.setBdViewCnt(board.getBdViewCnt() + 1);
+boardDAO.update(bdNo, board);
 %>
 
 <head>
@@ -41,41 +48,48 @@ String uname = (String)session.getAttribute("user_name");
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div class="collapse navbar-collapse" id = "navBoard">
+			<div class="collapse navbar-collapse" id="navBoard">
 				<ul class="navbar-nav me-auto mb-2 mb-sm-0">
 					<li class="nav-item"><a class="nav-link" aria-current="page"
 						href="../index.jsp">홈</a></li>
-					<li class="nav-item"><a class="nav-link" href="../recommend/recommend.html">식물 추천</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="../recommend/recommend.html">식물 추천</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">블로그</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle active" href="#"
 						data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 						<ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="../login/signin.jsp">로그인</a></li>
-                                <li><a class="dropdown-item" href="../login/signup.jsp">회원가입</a></li>
-                            </ul></li>
+							<li><a class="dropdown-item"
+								href="viewBoard.jsp?boardType=free">자유 게시판</a></li>
+							<li><a class="dropdown-item"
+								href="viewBoard.jsp?boardType=QA">Q&A 게시판</a></li>
+							<li><a class="dropdown-item"
+								href="viewBoard.jsp?boardType=sale">분양 게시판</a></li>
+						</ul></li>
 				</ul>
 
 				<div class="justify-content-end">
 					<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-                        <li class="nav-item dropdown">
-                                <%if(uid == null) {%>
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                aria-expanded="false">마이페이지</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="../login/signin.jsp">로그인</a></li>
-                                <li><a class="dropdown-item" href="../login/signup.jsp">회원가입</a></li>
-                            </ul>
-                            <%} else{%>
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                aria-expanded="false"><%=uname %></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">개인정보수정</a></li>
-                                <li><a class="dropdown-item" href="../login/logout.jsp">로그아웃</a></li>
-                            </ul>
-                            <%} %>
-                        </li>
-                    </ul>
+						<li class="nav-item dropdown">
+							<%
+							if (uid == null) {
+							%> <a class="nav-link dropdown-toggle" href="#"
+							data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="../login/signin.jsp">로그인</a></li>
+								<li><a class="dropdown-item" href="../login/signup.jsp">회원가입</a></li>
+							</ul> <%
+ 							} else {
+ 							%> <a class="nav-link dropdown-toggle" href="#"
+							data-bs-toggle="dropdown" aria-expanded="false"><%=uname%></a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">개인정보수정</a></li>
+								<li><a class="dropdown-item" href="../login/logout.jsp">로그아웃</a></li>
+							</ul> <%
+ }
+ %>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -86,18 +100,18 @@ String uname = (String)session.getAttribute("user_name");
 	<div class="container mt-5">
 		<div class="row justify-content-center">
 			<div class="col-lg-10">
-				<h1 class="mb-2">게시글 제목</h1>
-				<small class="text-muted">작성자 · 2021-01-01 · 조회수 1</small>
+				<h1 class="mb-2"><%=board.getBdTitle() %></h1>
+				<small class="text-muted"><%=board.getUserName() %> · <%=board.getBdDate() %> · 조회수 <%=board.getBdViewCnt() %></small>
 				<hr>
 				<div class="mt-3 mb-3">
-					<p>게시글 내용이 표시되는 영역입니다. 이곳에 게시글의 내용을 작성하십시오.</p>
+					<p><%=board.getBdContent() %></p>
 				</div>
 				<hr>
 				<h5 class="mb-3">댓글 작성</h5>
 				<form>
 					<textarea class="form-control mb-3" rows="3"
 						placeholder="댓글을 입력하세요..."></textarea>
-					<button type="submit" class="btn btn-primary">작성</button>
+					<button type="submit" class="btn btn-dark">작성</button>
 				</form>
 
 				<hr>
