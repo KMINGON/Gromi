@@ -7,11 +7,10 @@
 <%
 String uid = (String) session.getAttribute("user_id");
 String uname = (String) session.getAttribute("user_name");
+String boardType = request.getParameter("boardType");
 Integer bdNo = Integer.parseInt(request.getParameter("bdNo"));
 BoardDAO boardDAO = new BoardDAO();
 Board board = boardDAO.findById(bdNo);
-board.setBdViewCnt(board.getBdViewCnt() + 1);
-boardDAO.update(bdNo, board);
 %>
 
 <head>
@@ -79,8 +78,8 @@ boardDAO.update(bdNo, board);
 								<li><a class="dropdown-item" href="../login/signin.jsp">로그인</a></li>
 								<li><a class="dropdown-item" href="../login/signup.jsp">회원가입</a></li>
 							</ul> <%
- } else {
- %> <a class="nav-link dropdown-toggle" href="#"
+ 							} else {
+ 							%> <a class="nav-link dropdown-toggle" href="#"
 							data-bs-toggle="dropdown" aria-expanded="false"><%=uname%></a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="#">개인정보수정</a></li>
@@ -95,51 +94,38 @@ boardDAO.update(bdNo, board);
 		</div>
 	</nav>
 
-
 	<!--코드 작성 시작-->
-	<div class="container mt-5">
-		<div class="row justify-content-center">
-			<div class="col-lg-10">
-				<h1 class="mb-2"><%=board.getBdTitle()%></h1>
-				<small class="text-muted"><%=board.getUserName()%> · <%=board.getBdDate()%>
-					· 조회수 <%=board.getBdViewCnt()%></small>
-				<hr>
-				<div class="mt-3 mb-3">
-					<p><%=board.getBdContent()%></p>
-				</div>
-				<hr>
-				<%if(uid != null && uid.equals(board.getUserId())){ %>
-				<div class="d-flex justify-content-end">
-					<button type="button" class="btn btn-dark" onclick="location.href='editPost.jsp?bdNo=<%=board.getBdNo()%>'">수정</button>
-					<button type="button" class="btn btn-outline-dark" onclick=removePostEvent();>삭제</button>
-					<script>
-					function removePostEvent(){
-						result = confirm("삭제하시겠습니까?");
-						if(result) location.href="removePost.jsp?bdNo=<%=board.getBdNo()%>&boardType=<%=board.getbdType()%>"
-					}
-					</script>
-				</div>
-				<%} %>
-				<h5 class="mb-3">댓글 작성</h5>
-				<form>
-					<textarea class="form-control mb-3" rows="3"
-						placeholder="댓글을 입력하세요..."></textarea>
-					<button type="submit" class="btn btn-dark">작성</button>
-				</form>
-
-				<hr>
-				<h5 class="mb-3">댓글 목록</h5>
-				<div class="mb-3">
-					<strong>댓글 작성자</strong> · <small>2021-01-02</small>
-					<p>댓글 내용이 표시되는 영역입니다.</p>
-				</div>
-				<div class="mb-3">
-					<strong>댓글 작성자</strong> · <small>2021-01-03</small>
-					<p>댓글 내용이 표시되는 영역입니다.</p>
-				</div>
-			</div>
-		</div>
-	</div>
+	 <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card" style="border:black;">
+          <div class="card-header bg-dark text-white">
+            <h3>게시글 수정</h3>
+          </div>
+          <div class="card-body">
+            <form action = "editPostAction.jsp">
+              <div class="form-group">
+                <label for="title" class="font-weight-bold">제목</label>
+                <input type="text" class="form-control" id="title" value="<%=board.getBdTitle() %>"
+                 name = "title" placeholder="제목을 입력하세요" required>
+              </div>
+              <div class="form-group">
+                <label for="content" class="font-weight-bold">내용</label>
+                <textarea class="form-control" id="content"
+                 name = "content" rows="10" placeholder="내용을 입력하세요" required><%=board.getBdContent() %></textarea>
+              </div>
+              <div class="form-group d-flex justify-content-end">
+                <button type="submit" class="btn btn-dark mr-2">수정완료</button>
+                <button type="button" class="btn btn-outline-dark"
+                 onclick="history.back();">취소</button>
+              </div>
+              <input type="hidden" name="bdNo" value="<%=board.getBdNo()%>">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 	<!--코드 작성 종료-->
 
