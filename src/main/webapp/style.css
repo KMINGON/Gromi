@@ -67,3 +67,12 @@
     flex: 1;
   }
 }
+
+.hide{
+	display:none;
+}
+
+.show{
+	display:block;
+}
+

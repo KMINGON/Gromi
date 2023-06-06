@@ -114,7 +114,7 @@ String uname = (String)session.getAttribute("user_name");
           <div class="col-md-5 p-lg-5 mx-auto my-5">
             <h1 class="display-4 fw-bold text-wrap">GROMI 식물커뮤니티</h1>
             <p class="lead fw-bold">알고싶은 식물을 검색하고 원하는 식물에 대해 찾아보세요!</p>
-            <a class="btn btn-outline-secondary" href="./plantList.jsp">많은 식물 알아보기</a>
+            <a class="btn btn-outline-secondary" href="./gardenList.jsp">많은 식물 알아보기</a>
           </div>
           
           <div class="product-plant shadow-sm d-none d-md-block"></div>
