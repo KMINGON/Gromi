@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="model.boarddata.BoardDAO"%>
 <%@ page import="model.boarddata.Board"%>
+<%@ page import="model.boarddata.CommentDAO"%>
+<%@ page import="model.boarddata.Comment"%>
+<%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html lang="en">
 <%
@@ -108,10 +111,14 @@ boardDAO.update(bdNo, board);
 					<p><%=board.getBdContent()%></p>
 				</div>
 				<hr>
-				<%if(uid != null && uid.equals(board.getUserId())){ %>
+				<%
+				if (uid != null && uid.equals(board.getUserId())) {
+				%>
 				<div class="d-flex justify-content-end">
-					<button type="button" class="btn btn-dark" onclick="location.href='editPost.jsp?bdNo=<%=board.getBdNo()%>'">수정</button>
-					<button type="button" class="btn btn-outline-dark" onclick=removePostEvent();>삭제</button>
+					<button type="button" class="btn btn-dark"
+						onclick="location.href='editPost.jsp?bdNo=<%=board.getBdNo()%>'">수정</button>
+					<button type="button" class="btn btn-outline-dark"
+						onclick=removePostEvent();>삭제</button>
 					<script>
 					function removePostEvent(){
 						result = confirm("삭제하시겠습니까?");
@@ -119,24 +126,42 @@ boardDAO.update(bdNo, board);
 					}
 					</script>
 				</div>
-				<%} %>
+				<%
+				}
+				if (uid != null) {
+				%>
 				<h5 class="mb-3">댓글 작성</h5>
-				<form>
+				<form action="createCommentAction.jsp">
 					<textarea class="form-control mb-3" rows="3"
-						placeholder="댓글을 입력하세요..."></textarea>
+						placeholder="댓글을 입력하세요..." name="bdComment"></textarea>
 					<button type="submit" class="btn btn-dark">작성</button>
+					<input type="hidden" name="bdNo" value="<%=bdNo%>">
 				</form>
-
 				<hr>
+				<%
+				}
+				%>
 				<h5 class="mb-3">댓글 목록</h5>
+				<%
+				CommentDAO commentDAO = new CommentDAO();
+				ArrayList<Comment> comments = (ArrayList) commentDAO.findByBdNo(bdNo);
+
+				if (comments != null) {
+					for (Comment comment : comments) {
+				%>
 				<div class="mb-3">
-					<strong>댓글 작성자</strong> · <small>2021-01-02</small>
-					<p>댓글 내용이 표시되는 영역입니다.</p>
+					<strong><%=comment.getUserName()%></strong> · <small><%=comment.getCoDate()%></small>
+					<%if(uid != null && comment.getUserId().equals(uid)){ %>
+					<span class="ml-2"> · <a href="removeComment.jsp?coNo=<%=comment.getCoNo()%>&bdNo=<%=bdNo %>"
+						class="text-muted" style="font-size: 0.8rem;">삭제</a>
+					</span>
+					<%} %>
+					<p><%=comment.getBdComment()%></p>
 				</div>
-				<div class="mb-3">
-					<strong>댓글 작성자</strong> · <small>2021-01-03</small>
-					<p>댓글 내용이 표시되는 영역입니다.</p>
-				</div>
+				<%
+				}
+				}
+				%>
 			</div>
 		</div>
 	</div>
