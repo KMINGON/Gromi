@@ -244,14 +244,7 @@ translateX(
 								onclick="toggleButton(this)"
 								style="border-color: gray; color: gray; font-size: 26px;">겨울
 								최저온도</button>
-							<button
-								class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
-								onclick="toggleButton(this)"
-								style="border-color: gray; color: gray; font-size: 26px;">가격대</button>
-							<button
-								class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
-								onclick="toggleButton(this)"
-								style="border-color: gray; color: gray; font-size: 26px;">물주기</button>
+							
 						</div>
 					</div>
 				</div>
@@ -276,7 +269,7 @@ translateX(
 					document.querySelector('.slide-container').classList
 							.add('slide-out-left');
 					setTimeout(function() {
-						window.location.href = 'firstcategory/sunlight.jsp';
+						window.location.href = './firstcategory/sunlight.jsp';
 					}, 500);
 				}, 1000);
 			} else if (button.classList.contains('active')

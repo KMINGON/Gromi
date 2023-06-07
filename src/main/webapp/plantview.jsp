@@ -143,65 +143,70 @@ String boardType = request.getParameter("boardType");
 		aria-label="main-navbar">
 		<div class="container">
 			<a class="navbar-brand" href="./index.jsp">
-            <div class="box">
-                <div class="title">
-                    <span class="block"></span>
-                    <h1>Gromi<span></span></h1>
-                </div>
-            </div>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBoard"
-                aria-controls="navBoard" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+				<div class="box">
+					<div class="title">
+						<span class="block"></span>
+						<h1>
+							Gromi<span></span>
+						</h1>
+					</div>
+				</div>
+			</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navBoard"
+				aria-controls="navBoard" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-            <div class="collapse navbar-collapse" id = "navBoard">
-                <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./index.jsp">홈</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./gardenList.jsp">식물 검색</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./recommend.jsp">식물 추천</a>
-                    </li>
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            aria-expanded="false">커뮤니티</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="board/viewBoard.jsp?boardType=free">자유 게시판</a></li>
-                            <li><a class="dropdown-item" href="board/viewBoard.jsp?boardType=QA">Q&A 게시판</a></li>
-                            <li><a class="dropdown-item" href="board/viewBoard.jsp?boardType=sale">분양 게시판</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                
-                <div class="justify-content-end">
-                    <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-                        <li class="nav-item dropdown">
-                                <%if(uid == null) {%>
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                aria-expanded="false">마이페이지</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="login/signin.jsp">로그인</a></li>
-                                <li><a class="dropdown-item" href="login/signup.jsp">회원가입</a></li>
-                            </ul>
-                            <%} else{%>
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                aria-expanded="false"><%=uname %></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="login/editUser.jsp">개인정보수정</a></li>
-                                <li><a class="dropdown-item" href="login/logout.jsp">로그아웃</a></li>
-                            </ul>
-                            <%} %>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
+			<div class="collapse navbar-collapse" id="navBoard">
+				<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="./index.jsp">홈</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="./gardenList.jsp">식물 검색</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="./recommend.jsp">식물 추천</a></li>
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item"
+								href="board/viewBoard.jsp?boardType=free">자유 게시판</a></li>
+							<li><a class="dropdown-item"
+								href="board/viewBoard.jsp?boardType=QA">Q&A 게시판</a></li>
+							<li><a class="dropdown-item"
+								href="board/viewBoard.jsp?boardType=sale">분양 게시판</a></li>
+						</ul></li>
+				</ul>
+
+				<div class="justify-content-end">
+					<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+						<li class="nav-item dropdown">
+							<%
+							if (uid == null) {
+							%> <a class="nav-link dropdown-toggle" href="#"
+							data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="login/signin.jsp">로그인</a></li>
+								<li><a class="dropdown-item" href="login/signup.jsp">회원가입</a></li>
+							</ul> <%
+ } else {
+ %> <a class="nav-link dropdown-toggle" href="#"
+							data-bs-toggle="dropdown" aria-expanded="false"><%=uname%></a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="login/editUser.jsp">개인정보수정</a></li>
+								<li><a class="dropdown-item" href="login/logout.jsp">로그아웃</a></li>
+							</ul> <%
+ }
+ %>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
 
 
         <!--코드 작성-->
@@ -265,184 +270,132 @@ String boardType = request.getParameter("boardType");
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="plant_board">
                         <div class="col">
                             <div class="card shadow-sm">
-                                <img src="http://www.w3.org/2000/svg"
+                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
                                     class="bd-placeholder-img card-img-top"
                                     width="100%"
                                     height="225"/>
-
                                 <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text">식물 이름 로드중..</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                        </div>
-                                        <small class="text-muted">9 mins</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col">
                             <div class="card shadow-sm">
-                                <img src="http://www.w3.org/2000/svg"
+                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
                                     class="bd-placeholder-img card-img-top"
                                     width="100%"
                                     height="225"/>
-
                                 <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text">식물 이름 로드중..</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                        </div>
-                                        <small class="text-muted">9 mins</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col">
                             <div class="card shadow-sm">
-                                <img src="http://www.w3.org/2000/svg"
+                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
                                     class="bd-placeholder-img card-img-top"
                                     width="100%"
                                     height="225"/>
-
                                 <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text">식물 이름 로드중..</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                        </div>
-                                        <small class="text-muted">9 mins</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col">
                             <div class="card shadow-sm">
-                                <img src="http://www.w3.org/2000/svg"
+                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
                                     class="bd-placeholder-img card-img-top"
                                     width="100%"
                                     height="225"/>
-
                                 <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text">식물 이름 로드중..</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                        </div>
-                                        <small class="text-muted">9 mins</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col">
                             <div class="card shadow-sm">
-                                <img src="http://www.w3.org/2000/svg"
+                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
                                     class="bd-placeholder-img card-img-top"
                                     width="100%"
                                     height="225"/>
-
                                 <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text">식물 이름 로드중..</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                        </div>
-                                        <small class="text-muted">9 mins</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col">
                             <div class="card shadow-sm">
-                                <img src="http://www.w3.org/2000/svg"
+                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
                                     class="bd-placeholder-img card-img-top"
                                     width="100%"
                                     height="225"/>
-
                                 <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text">식물 이름 로드중..</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                        </div>
-                                        <small class="text-muted">9 mins</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col">
                             <div class="card shadow-sm">
-                                <img src="http://www.w3.org/2000/svg"
+                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
                                     class="bd-placeholder-img card-img-top"
                                     width="100%"
                                     height="225"/>
-
                                 <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text">식물 이름 로드중..</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                        </div>
-                                        <small class="text-muted">9 mins</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col">
                             <div class="card shadow-sm">
-                                <img src="http://www.w3.org/2000/svg"
+                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
                                     class="bd-placeholder-img card-img-top"
                                     width="100%"
                                     height="225"/>
-
                                 <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text">식물 이름 로드중..</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                        </div>
-                                        <small class="text-muted">9 mins</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col">
                             <div class="card shadow-sm">
-                                <img src="http://www.w3.org/2000/svg"
+                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
                                     class="bd-placeholder-img card-img-top"
                                     width="100%"
                                     height="225"/>
-
                                 <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text">식물 이름 로드중..</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                        </div>
-                                        <small class="text-muted">9 mins</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
+                        
+                        
 
                        
                     </div>
@@ -454,56 +407,56 @@ String boardType = request.getParameter("boardType");
 
         <!--footer-->
         <footer class="site-footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <h6>Gromi</h6>
-                            <p class="text-justify">Company. 구름빵 | Owner. 이종민
-                                <br>Businuess No. 051-890-1724 | E-mail. cse@gmail.com <br>
-                                Address. 부산광역시 부산진구 엄광로176(가야동)
-                            </p>
-                        </div>
-
-                        <div class="col-xs-6 col-md-3">
-                            <h6>Categories</h6>
-                            <ul class="footer-links">
-                                <li><a href="https://se.deu.ac.kr/se/index.do">ABOUT US</a></li>
-                                <li><a href="./index.jsp">HOME</a></li>
-                                <li><a href="./recommend.jsp">RECOMMEND</a></li>
-                                <li><a href="./board/viewBoard.jsp?boardType=free">COMMUNITY</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="col-xs-6 col-md-3">
-                            <h6>Social</h6>
-                            <ul class="footer-links">
-                                <li><a href="https://www.instagram.com/deu_smartcse/">CSE Instagram</a></li>
-                                <li><a href="https://open.kakao.com/o/gfoeUk8e">Cloud Class Kakao</a></li>
-                            </ul>
-                        </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <h6>Gromi</h6>
+                        <p class="text-justify">Company. 구름빵 | Owner. 김시은
+                            <br>Businuess No. 051-xxx-xxxx | E-mail. xxxxx@gmail.com <br>
+                            Address. 부산광역시 부산진구 엄광로176(가야동)
+                        </p>
                     </div>
-                    <hr>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 col-sm-6 col-xs-12">
-                            <p class="copyright-text">Copyright &copy; Goormbbang Company, All rights reserved.
-                            </p>
-                        </div>
 
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <ul class="social-icons">
-                                <li><a class="facebook" href="https://www.instagram.com/nuexsera/"><i
-                                            class="fa fa-instagram"></i></a></li>
-                                <li><a class="twitter" href="https://www.instagram.com/jongmln_/"><i
-                                            class="fa fa-instagram"></i></a></li>
-                                <li><a class="dribbble" href="https://www.instagram.com/min_gon_med._.j/"><i
-                                            class="fa fa-instagram"></i></a></li>
-                            </ul>
-                        </div>
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Categories</h6>
+                        <ul class="footer-links">
+                            <li><a href="http://scanfcode.com/category/c-language/">ABOUT US</a></li>
+                            <li><a href="http://scanfcode.com/category/front-end-development/">GUIDE</a></li>
+                            <li><a href="http://scanfcode.com/category/back-end-development/">PRIVACY</a></li>
+                            <li><a href="http://scanfcode.com/category/back-end-development/">HELP</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Social</h6>
+                        <ul class="footer-links">
+                            <li><a href="http://scanfcode.com/about/">Instagram</a></li>
+                            <li><a href="http://scanfcode.com/contact/">Kakao</a></li>
+                        </ul>
                     </div>
                 </div>
-            </footer>
+                <hr>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <p class="copyright-text">Copyright &copy; Goormbbang Company, All rights reserved.
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <ul class="social-icons">
+                            <li><a class="facebook" href="https://www.instagram.com/nuexsera/"><i
+                                        class="fa fa-instagram"></i></a></li>
+                            <li><a class="twitter" href="https://www.instagram.com/jongmln_/"><i
+                                        class="fa fa-instagram"></i></a></li>
+                            <li><a class="dribbble" href="https://www.instagram.com/min_gon_med._.j/"><i
+                                        class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
 
         

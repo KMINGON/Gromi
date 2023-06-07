@@ -141,23 +141,19 @@ String boardType = request.getParameter("boardType");
 					<button
 						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 						onclick="toggleButton(this)"
-						style="border-color: gray; color: gray; font-size: 26px;">녹색,
-						연두색</button>
+						style="border-color: gray; color: gray; font-size: 26px;">녹색, 연두색</button>
 					<button
 						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 						onclick="toggleButton(this)"
-						style="border-color: gray; color: gray; font-size: 26px;">금색,
-						노란색</button>
+						style="border-color: gray; color: gray; font-size: 26px;">금색, 노란색</button>
 					<button
 						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 						onclick="toggleButton(this)"
-						style="border-color: gray; color: gray; font-size: 26px;">흰색,
-						크림색</button>
+						style="border-color: gray; color: gray; font-size: 26px;">흰색, 크림색</button>
 					<button
 						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 						onclick="toggleButton(this)"
-						style="border-color: gray; color: gray; font-size: 26px;">은색,
-						회색</button>
+						style="border-color: gray; color: gray; font-size: 26px;">은색, 회색</button>
 
 				</div>
 			</div>
@@ -166,13 +162,11 @@ String boardType = request.getParameter("boardType");
 					<button
 						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 						onclick="toggleButton(this)"
-						style="border-color: gray; color: gray; font-size: 26px;">빨강,
-						분홍, 자주색</button>
+						style="border-color: gray; color: gray; font-size: 26px;">빨강, 분홍, 자주색</button>
 					<button
 						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 						onclick="toggleButton(this)"
-						style="border-color: gray; color: gray; font-size: 26px;">여러색
-						혼합</button>
+						style="border-color: gray; color: gray; font-size: 26px;">여러색 혼합</button>
 					<button
 						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 						onclick="toggleButton(this)"

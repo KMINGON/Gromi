@@ -206,25 +206,21 @@ translateX(
 				<button
 					class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 					onclick="toggleButton(this)"
-					style="border-color: gray; color: gray; font-size: 22px;">항상
-					흙을 축축하게 유지(물에 잠김)</button>
+					style="border-color: gray; color: gray; font-size: 22px;">항상 흙을 축축하게 유지(물에 잠김)</button>
 				<button
 					class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 					onclick="toggleButton(this)"
-					style="border-color: gray; color: gray; font-size: 22px;">흙을
-					촉촉하게 유지(물에 잠기지 않도록 유지)</button>
+					style="border-color: gray; color: gray; font-size: 22px;">흙을 촉촉하게 유지(물에 잠기지 않도록 유지)</button>
 			</div>
 			<div class="col-md-12 d-flex justify-content-center mt-3">
 				<button
 					class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 					onclick="toggleButton(this)"
-					style="border-color: gray; color: gray; font-size: 22px;">토양
-					표면이 말랐을 때 충분히 관수</button>
+					style="border-color: gray; color: gray; font-size: 22px;">토양 표면이 말랐을 때 충분히 관수</button>
 				<button
 					class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 					onclick="toggleButton(this)"
-					style="border-color: gray; color: gray; font-size: 22px;">화분
-					흙 대부분 말랐을 때 충분히 관수</button>
+					style="border-color: gray; color: gray; font-size: 22px;">화분 흙 대부분 말랐을 때 충분히 관수</button>
 				<button
 					class="btn btn-primary btn-lg rounded-pill mx-2 custom-button"
 					onclick="toggleButton(this)"

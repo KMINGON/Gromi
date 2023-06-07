@@ -195,7 +195,7 @@ String boardType = request.getParameter("boardType");
 				} else if (buttonText === '잎 가장자리 무늬') {
 					window.location.href = '../plantview.jsp';
 				} else if (buttonText === '기타') {
-					window.location.href = '../plantview .jsp';
+					window.location.href = '../plantview.jsp';
 				}
 			}
 		}

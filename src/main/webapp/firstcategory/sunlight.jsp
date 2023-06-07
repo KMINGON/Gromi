@@ -139,18 +139,15 @@ String boardType = request.getParameter("boardType");
 				<button
 					class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 					onclick="toggleButton(this)"
-					style="border-color: gray; color: gray; font-size: 26px;">낮은
-					광도</button>
+					style="border-color: gray; color: gray; font-size: 26px;">낮은 광도</button>
 				<button
 					class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 					onclick="toggleButton(this)"
-					style="border-color: gray; color: gray; font-size: 26px;">중간
-					광도</button>
+					style="border-color: gray; color: gray; font-size: 26px;">중간 광도</button>
 				<button
 					class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 					onclick="toggleButton(this)"
-					style="border-color: gray; color: gray; font-size: 26px;">높은
-					광도</button>
+					style="border-color: gray; color: gray; font-size: 26px;">높은 광도</button>
 				<button
 					class="btn btn-primary btn-lg rounded-pill mx-2 custom-button"
 					onclick="toggleButton(this)"
