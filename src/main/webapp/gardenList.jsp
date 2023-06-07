@@ -166,7 +166,7 @@ String uname = (String) session.getAttribute("user_name");
 		<div class="carousel-inner">
 			<!-- data-bs-interval : 슬라이드 지연 시간 -->
 			<div class="carousel-item active bg-success" data-bs-interval="2000">
-				<h6 class="text-center fw-small text-white">
+				<h6 class="text-center fw-normal text-white">
 					원하던 식물을 그로미에서 만나보세요 :-)
 					</h3>
 			</div>

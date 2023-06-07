@@ -8,7 +8,7 @@
 <%@page import="java.net.URL"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,7 +27,7 @@ String cntntsNo = request.getParameter("cntntsNo");
 <link rel="stylesheet" src="style.css">
 </head>
 <body>
-<%
+	<%
 //인테러뱅 상세조회
 
 	//apiKey
@@ -156,156 +156,233 @@ String cntntsNo = request.getParameter("cntntsNo");
 	
 	if(resultCode.equals("00")){
 %>
-<header>
-		<nav class="navbar navbar-expand-md navbar-dark bg-dark"
-			aria-label="main-navbar">
-			<div class="container">
-				<a class="navbar-brand" href="index.jsp">Gromi</a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#navBoard"
-					aria-controls="navBoard" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
+	<header> <nav
+		class="navbar navbar-expand-md navbar-dark bg-dark"
+		aria-label="main-navbar">
+	<div class="container">
+		<a class="navbar-brand" href="index.jsp">Gromi</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navBoard" aria-controls="navBoard"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-				<div class="collapse navbar-collapse" id="navBoard">
-					<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="index.jsp">홈</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="recommend/recommend.html">식물 추천</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">블로그</a></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item"
-									href="board/viewBoard.jsp?boardType=free">자유 게시판</a></li>
-								<li><a class="dropdown-item"
-									href="board/viewBoard.jsp?boardType=QA">Q&A 게시판</a></li>
-								<li><a class="dropdown-item"
-									href="board/viewBoard.jsp?boardType=sale">분양 게시판</a></li>
-							</ul></li>
-					</ul>
+		<div class="collapse navbar-collapse" id="navBoard">
+			<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+				<li class="nav-item"><a class="nav-link active"
+					aria-current="page" href="index.jsp">홈</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="recommend/recommend.html">식물 추천</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">블로그</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+					aria-expanded="false">커뮤니티</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item"
+							href="board/viewBoard.jsp?boardType=free">자유 게시판</a></li>
+						<li><a class="dropdown-item"
+							href="board/viewBoard.jsp?boardType=QA">Q&A 게시판</a></li>
+						<li><a class="dropdown-item"
+							href="board/viewBoard.jsp?boardType=sale">분양 게시판</a></li>
+					</ul></li>
+			</ul>
 
-					<div class="justify-content-end">
-						<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-							<li class="nav-item dropdown">
-								<%
+			<div class="justify-content-end">
+				<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+					<li class="nav-item dropdown">
+						<%
 								if (uid == null) {
 								%> <a class="nav-link dropdown-toggle" href="#"
-								data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="login/signin.jsp">로그인</a></li>
-									<li><a class="dropdown-item" href="login/signup.jsp">회원가입</a></li>
-								</ul> <%
+						data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="login/signin.jsp">로그인</a></li>
+							<li><a class="dropdown-item" href="login/signup.jsp">회원가입</a></li>
+						</ul> <%
  } else {
  %> <a class="nav-link dropdown-toggle" href="#"
-								data-bs-toggle="dropdown" aria-expanded="false"><%=uname%></a>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">개인정보수정</a></li>
-									<li><a class="dropdown-item" href="login/logout.jsp">로그아웃</a></li>
-								</ul> <%
+						data-bs-toggle="dropdown" aria-expanded="false"><%=uname%></a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="#">개인정보수정</a></li>
+							<li><a class="dropdown-item" href="login/logout.jsp">로그아웃</a></li>
+						</ul> <%
  }
  %>
-							</li>
-						</ul>
-					</div>
-				</div>
+					</li>
+				</ul>
 			</div>
-		</nav>
+		</div>
+	</div>
+	</nav> </header>
 
-	</header>
-	<h3><%= cntntsNo%></h3>
-	
-	<table class="table"  border="1" cellspacing="0" cellpadding="0">
+	<table class="table container" cellspacing="0" cellpadding="0">
 		<colgroup>
 			<col width="15%">
 			<col width="*">
 		</colgroup>
 		<tr>
-            <th>식물학명</th>
-            <td><%=plntbneNm%></td>
-        </tr>
-        <tr>
-            <th>식물영명</th>
-            <td><%=plntzrNm%></td>
-        </tr>
-        <tr>
-            <th>유통명</th>
-            <td><%=distbNm%></td>
-        </tr>
-        <tr>
-            <th>과명</th>
-            <td><%=fmlNm%></td>
-        </tr>
-        <tr>
-            <th>원산지 정보</th>
-            <td><%=orgplceInfo%></td>
-        </tr>
-        <tr>
-            <th>조언 정보</th>
-            <td><%=adviseInfo%></td>
-        </tr>
-        <tr>
-            <th>성장 높이 정보</th>
-            <td><%=growthHgInfo%></td>
-        </tr>
-        <tr>
-            <th>성장 넓이 정보</th>
-            <td><%=growthAraInfo%></td>
-        </tr>
-        <tr>
-            <th>잎 형태 정보</th>
-            <td><%=lefStleInfo%></td>
-        </tr>
+			<th>식물학명</th>
+			<td><%=plntbneNm%></td>
+		</tr>
+		<tr>
+			<th>식물영명</th>
+			<td><%=plntzrNm%></td>
+		</tr>
+		<tr>
+			<th>유통명</th>
+			<td><%=distbNm%></td>
+		</tr>
+		<tr>
+			<th>과명</th>
+			<td><%=fmlNm%></td>
+		</tr>
+		<tr>
+			<th>원산지 정보</th>
+			<td><%=orgplceInfo%></td>
+		</tr>
+		<tr>
+			<th>조언 정보</th>
+			<td><%=adviseInfo%></td>
+		</tr>
+		<tr>
+			<th>성장 높이 정보</th>
+			<td><%=growthHgInfo + "cm"%></td>
+		</tr>
+		<tr>
+			<th>성장 넓이 정보</th>
+			<td><%=growthAraInfo + "cm"%></td>
+		</tr>
+
+
+		<tr>
+			<%
+        String manage;
+        if(managelevelCode.equals("089001")){
+        	manage = "초보자에게 추천";
+        }else if(managelevelCode.equals("089002")){
+        	manage =  "경험자에게 추천";
+        } else{
+        	manage =  "전문에게 추천";
+        }
+        %>
+			<th>관리수준 코드</th>
+			<td><%=manage%></td>
+		</tr>
+		<tr>
+			<%
+        String speed;
+        if(grwtveCode.equals("090001")){
+        	speed = "빠름";
+        }else if(grwtveCode.equals("090002")){
+        	speed =  "보통";
+        } else{
+        	speed =  "느림";
+        }
+        %>
+			<th>생장속도 코드</th>
+			<td><%=speed%></td>
+		</tr>
+		<tr>
+			<%
+			String temperature;
+			if(grwhTpCode.equals("082001")){
+				temperature = "10~15℃ 적정";
+	        }
+			else if(grwhTpCode.equals("082002")){
+				temperature =  "16~20℃ 적정";
+	        }
+			
+			else if(grwhTpCode.equals("082003")){
+				temperature =  "21~25℃ 적정";
+		    } 
+	        else{
+	        	temperature =  "26~30℃ 적정";
+	        }
         
-        <tr>
-            <th>관리수준 코드</th>
-            <td><%=managelevelCode%></td>
-        </tr>
-        <tr>
-            <th>생장속도 코드</th>
-            <td><%=grwtveCode%></td>
-        </tr>
-        <tr>
-            <th>생육 온도 코드</th>
-            <td><%=grwhTpCode%></td>
-        </tr>
-        <tr>
-            <th>겨울 최저 온도 코드</th>
-            <td><%=winterLwetTpCode%></td>
-        </tr>
-        <tr>
-            <th>습도 코드</th>
-            <td><%=hdCode%></td>
-        </tr>
-        <tr>
-            <th>비료 정보</th>
-            <td><%=frtlzrInfo%></td>
-        </tr>
-        <tr>
-            <th>토양 정보</th>
-            <td><%=soilInfo%></td>
-        </tr>
+        %>
+			<th>생육 온도 코드</th>
+			<td><%=temperature%></td>
+		</tr>
+		<tr>
+		<%
+			String wintertemp;
+			if(winterLwetTpCode.equals("057001")){
+				wintertemp = "0℃ 이하";
+	        }
+			else if(winterLwetTpCode.equals("057002")){
+				wintertemp =  "7℃";
+	        }
+			
+			else if(winterLwetTpCode.equals("057003")){
+				wintertemp =  "10℃";
+		    } 
+	        else{
+	        	wintertemp =  "13℃ 이상";
+	        }
         
-        <tr>
-            <th>물주기 여름 코드</th>
-            <td><%=watercycleSummerCode%></td>
-        </tr>
+        %>
+			<th>겨울 최저 온도 코드</th>
+			<td><%=wintertemp%></td>
+		</tr>
+		<tr>
+			<%
+			String humid;
+			if(hdCode.equals("083001")){
+				humid = "40% 미만";
+	        }
+			else if(hdCode.equals("083002")){
+				humid =  "40 ~ 70%";
+	        }
+			
+			else {
+				humid =  "70% 이상";
+		    } 
         
-        <tr>
-            <th>물주기 겨울 코드</th>
-            <td><%=watercycleWinterCode%></td>
-        </tr>
-        
-       
-        <tr>
-            <th>관리요구도 코드</th>
-            <td><%=managedemanddoCode%></td>
-        </tr>
+        %>
+			<th>습도 코드</th>
+			<td><%=humid%></td>
+		</tr>
+		<tr>
+			<th>비료 정보</th>
+			<td><%=frtlzrInfo%></td>
+		</tr>
+
+
+		<tr>
+			<%
+        String summerWater;
+        if(watercycleSummerCode.equals("053001")){
+        	summerWater = "항상 흙을 촉촉하게 유지함(물에 잠김)";
+        }else if(watercycleSummerCode.equals("053002")){
+        	summerWater =  "흙을 촉촉하게 유지 해야함(물에 잠기지 않도록 주의)";
+        } else if(watercycleSummerCode.equals("053003")){
+        	summerWater =  "토양 표면이 말랐을때 충분히 관수해야함";
+        } else{
+        	summerWater =  "화분 흙 대부분 말랐을때 충분히 관수해야함";
+        }
+        %>
+			<th>물주기 여름 코드</th>
+			<td><%=summerWater%></td>
+		</tr>
+
+		<tr>
+			<%
+        String winterWater;
+        if(watercycleSummerCode.equals("053001")){
+        	winterWater = "항상 흙을 촉촉하게 유지함(물에 잠김)";
+        }else if(watercycleSummerCode.equals("053002")){
+        	winterWater =  "흙을 촉촉하게 유지 해야함(물에 잠기지 않도록 주의)";
+        } else if(watercycleSummerCode.equals("053003")){
+        	winterWater =  "토양 표면이 말랐을때 충분히 관수해야함";
+        } else{
+        	winterWater =  "화분 흙 대부분 말랐을때 충분히 관수해야함";
+        }
+        %>
+			<th>물주기 겨울 코드</th>
+			<td><%=winterWater%></td>
+		</tr>
+
 	</table>
-<%
+	<%
 	}else{
 		out.println(resultMsg);
 	}
