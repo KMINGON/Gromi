@@ -237,13 +237,11 @@ translateX(
 							<button
 								class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 								onclick="toggleButton(this)"
-								style="border-color: gray; color: gray; font-size: 26px;">꽃피는
-								계절</button>
+								style="border-color: gray; color: gray; font-size: 26px;">꽃피는 계절</button>
 							<button
 								class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
 								onclick="toggleButton(this)"
-								style="border-color: gray; color: gray; font-size: 26px;">겨울
-								최저온도</button>
+								style="border-color: gray; color: gray; font-size: 26px;">겨울 최저온도</button>
 							
 						</div>
 					</div>

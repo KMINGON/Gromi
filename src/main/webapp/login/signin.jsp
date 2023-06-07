@@ -51,70 +51,65 @@ String uname = (String) session.getAttribute("user_name");
 		aria-label="main-navbar">
 		<div class="container">
 			<a class="navbar-brand" href="../index.jsp">
-				<div class="box">
-					<div class="title">
-						<span class="block"></span>
-						<h1>
-							Gromi<span></span>
-						</h1>
-					</div>
-				</div>
-			</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navBoard"
-				aria-controls="navBoard" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+            <div class="box">
+                <div class="title">
+                    <span class="block"></span>
+                    <h1>Gromi<span></span></h1>
+                </div>
+            </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBoard"
+                aria-controls="navBoard" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-			<div class="collapse navbar-collapse" id="navBoard">
-				<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="../index.jsp">홈</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../gardenList.jsp">식물 검색</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../recommend.jsp">식물 추천</a></li>
-
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
-						data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item"
-								href="../board/viewBoard.jsp?boardType=free">자유 게시판</a></li>
-							<li><a class="dropdown-item"
-								href="../board/viewBoard.jsp?boardType=QA">Q&A 게시판</a></li>
-							<li><a class="dropdown-item"
-								href="../board/viewBoard.jsp?boardType=sale">분양 게시판</a></li>
-						</ul></li>
-				</ul>
-
-				<div class="justify-content-end">
-					<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-						<li class="nav-item dropdown">
-							<%
-							if (uid == null) {
-							%> <a class="nav-link dropdown-toggle" href="#"
-							data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="../login/signin.jsp">로그인</a></li>
-								<li><a class="dropdown-item" href="../login/signup.jsp">회원가입</a></li>
-							</ul> <%
- } else {
- %> <a class="nav-link dropdown-toggle" href="#"
-							data-bs-toggle="dropdown" aria-expanded="false"><%=uname%></a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="../login/editUser.jsp">개인정보수정</a></li>
-								<li><a class="dropdown-item" href="../login/logout.jsp">로그아웃</a></li>
-							</ul> <%
- }
- %>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</nav>
+            <div class="collapse navbar-collapse" id = "navBoard">
+                <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../index.jsp">홈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../gardenList.jsp">식물 검색</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../recommend.jsp">식물 추천</a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            aria-expanded="false">커뮤니티</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../board/viewBoard.jsp?boardType=free">자유 게시판</a></li>
+                            <li><a class="dropdown-item" href="../board/viewBoard.jsp?boardType=QA">Q&A 게시판</a></li>
+                            <li><a class="dropdown-item" href="../board/viewBoard.jsp?boardType=sale">분양 게시판</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div class="justify-content-end">
+                    <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                        <li class="nav-item dropdown">
+                                <%if(uid == null) {%>
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                aria-expanded="false">마이페이지</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="../login/signin.jsp">로그인</a></li>
+                                <li><a class="dropdown-item" href="../login/signup.jsp">회원가입</a></li>
+                            </ul>
+                            <%} else{%>
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                aria-expanded="false"><%=uname %></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="../login/editUser.jsp">개인정보수정</a></li>
+                                <li><a class="dropdown-item" href="../login/logout.jsp">로그아웃</a></li>
+                            </ul>
+                            <%} %>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
 
 
 	<!--코드 작성 시작-->
