@@ -2,11 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="model.boarddata.BoardDAO"%>
 <%@ page import="model.boarddata.Board"%>
+<%@ page import="model.boarddata.CommentDAO"%>
+<%@ page import="model.boarddata.Comment"%>
+<%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html lang="en">
 <%
-String uid = (String)session.getAttribute("user_id");
-String uname = (String)session.getAttribute("user_name");
+String uid = (String) session.getAttribute("user_id");
+String uname = (String) session.getAttribute("user_name");
 Integer bdNo = Integer.parseInt(request.getParameter("bdNo"));
 BoardDAO boardDAO = new BoardDAO();
 Board board = boardDAO.findById(bdNo);
@@ -79,11 +82,11 @@ boardDAO.update(bdNo, board);
 								<li><a class="dropdown-item" href="../login/signin.jsp">로그인</a></li>
 								<li><a class="dropdown-item" href="../login/signup.jsp">회원가입</a></li>
 							</ul> <%
- 							} else {
- 							%> <a class="nav-link dropdown-toggle" href="#"
+ } else {
+ %> <a class="nav-link dropdown-toggle" href="#"
 							data-bs-toggle="dropdown" aria-expanded="false"><%=uname%></a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">개인정보수정</a></li>
+								<li><a class="dropdown-item" href="../login/editUser.jsp">개인정보수정</a></li>
 								<li><a class="dropdown-item" href="../login/logout.jsp">로그아웃</a></li>
 							</ul> <%
  }
@@ -100,30 +103,65 @@ boardDAO.update(bdNo, board);
 	<div class="container mt-5">
 		<div class="row justify-content-center">
 			<div class="col-lg-10">
-				<h1 class="mb-2"><%=board.getBdTitle() %></h1>
-				<small class="text-muted"><%=board.getUserName() %> · <%=board.getBdDate() %> · 조회수 <%=board.getBdViewCnt() %></small>
+				<h1 class="mb-2"><%=board.getBdTitle()%></h1>
+				<small class="text-muted"><%=board.getUserName()%> · <%=board.getBdDate()%>
+					· 조회수 <%=board.getBdViewCnt()%></small>
 				<hr>
 				<div class="mt-3 mb-3">
-					<p><%=board.getBdContent() %></p>
+					<p style = "word-wrap:break-word"><%=board.getBdContent()%></p>
 				</div>
 				<hr>
+				<%
+				if (uid != null && uid.equals(board.getUserId())) {
+				%>
+				<div class="d-flex justify-content-end">
+					<button type="button" class="btn btn-dark"
+						onclick="location.href='editPost.jsp?bdNo=<%=board.getBdNo()%>'">수정</button>
+					<button type="button" class="btn btn-outline-dark"
+						onclick=removePostEvent();>삭제</button>
+					<script>
+					function removePostEvent(){
+						result = confirm("삭제하시겠습니까?");
+						if(result) location.href="removePost.jsp?bdNo=<%=board.getBdNo()%>&boardType=<%=board.getbdType()%>"
+					}
+					</script>
+				</div>
+				<%
+				}
+				if (uid != null) {
+				%>
 				<h5 class="mb-3">댓글 작성</h5>
-				<form>
+				<form action="createCommentAction.jsp">
 					<textarea class="form-control mb-3" rows="3"
-						placeholder="댓글을 입력하세요..."></textarea>
+						placeholder="댓글을 입력하세요..." name="bdComment"></textarea>
 					<button type="submit" class="btn btn-dark">작성</button>
+					<input type="hidden" name="bdNo" value="<%=bdNo%>">
 				</form>
-
 				<hr>
+				<%
+				}
+				%>
 				<h5 class="mb-3">댓글 목록</h5>
+				<%
+				CommentDAO commentDAO = new CommentDAO();
+				ArrayList<Comment> comments = (ArrayList) commentDAO.findByBdNo(bdNo);
+
+				if (comments != null) {
+					for (Comment comment : comments) {
+				%>
 				<div class="mb-3">
-					<strong>댓글 작성자</strong> · <small>2021-01-02</small>
-					<p>댓글 내용이 표시되는 영역입니다.</p>
+					<strong><%=comment.getUserName()%></strong> · <small><%=comment.getCoDate()%></small>
+					<%if(uid != null && comment.getUserId().equals(uid)){ %>
+					<span class="ml-2"> · <a href="removeComment.jsp?coNo=<%=comment.getCoNo()%>&bdNo=<%=bdNo %>"
+						class="text-muted" style="font-size: 0.8rem;">삭제</a>
+					</span>
+					<%} %>
+					<p style = "word-wrap:break-word"><%=comment.getBdComment()%></p>
 				</div>
-				<div class="mb-3">
-					<strong>댓글 작성자</strong> · <small>2021-01-03</small>
-					<p>댓글 내용이 표시되는 영역입니다.</p>
-				</div>
+				<%
+				}
+				}
+				%>
 			</div>
 		</div>
 	</div>

@@ -84,30 +84,27 @@ String uname = (String)session.getAttribute("user_name");
 
 
 	<!--코드 작성 시작-->
-	<!DOCTYPE html>
-  <div class="container">
+	<div class="container">
     <div class="row vh-100 justify-content-center align-items-center">
         <div class="col-md-4">
             <div class="card border-0">
                 <div class="card-body">
-                    <h2 class="card-title text-center mb-4">로그인</h2>
-                    <form action = "signinAction.jsp">
-                        <div class="mb-3">
-                            <label for="inputEmail" class="form-label">아이디</label>
-                            <input type="text" class="form-control" id="inputEmail" name = "inputEmail" required>
-                        </div>
+                    <h2 class="card-title text-center mb-4">개인정보수정</h2>
+                    <form action = "editUserAction.jsp">
                         <div class="mb-3">
                             <label for="inputPassword" class="form-label">비밀번호</label>
                             <input type="password" class="form-control" id="inputPassword" name = "inputPassword" required>
                         </div>
-                        <div class="d-flex justify-content-between mb-2">
-                            <button type="submit" class="btn btn-primary">로그인</button>
-                            <button type="button" class="btn btn-secondary">회원가입</button>
+                        <div class="mb-3">
+                            <label for="inputConfirmPassword" class="form-label">비밀번호 확인</label>
+                            <input type="password" class="form-control" id="inputConfirmPassword" name = "inputConfirmPassword" required>
                         </div>
-                        <div class="text-center mt-2">
-                            <small class="text-muted">
-                                <a href="#">아이디 찾기</a> / <a href="#">비밀번호 찾기</a>
-                            </small>
+                        <div class="mb-3">
+                            <label for="inputName" class="form-label">이름</label>
+                            <input type="text" class="form-control" id="inputName" name = "inputName" required>
+                        </div>
+                        <div class="d-flex justify-content-center mb-2">
+                            <button type="submit" class="btn btn-primary">수정하기</button>
                         </div>
                     </form>
                 </div>

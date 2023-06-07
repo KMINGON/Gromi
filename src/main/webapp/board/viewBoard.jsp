@@ -53,6 +53,23 @@ BoardDAO boardDAO = new BoardDAO();
 	cursor: pointer;
 }
 </style>
+<style>
+  .fixed-table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .ellipsis {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+  }
+</style>
+
+
 </head>
 
 <body>
@@ -102,7 +119,7 @@ BoardDAO boardDAO = new BoardDAO();
  %> <a class="nav-link dropdown-toggle" href="#"
 							data-bs-toggle="dropdown" aria-expanded="false"><%=uname%></a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">개인정보수정</a></li>
+								<li><a class="dropdown-item" href="../login/editUser.jsp">개인정보수정</a></li>
 								<li><a class="dropdown-item" href="../login/logout.jsp">로그아웃</a></li>
 							</ul> <%
  }
@@ -149,7 +166,7 @@ BoardDAO boardDAO = new BoardDAO();
 				if(lastPage > postCnt) lastPage = postCnt;
 				
 				%>
-				<table class="table">
+				<table class="table fixed-table">
 					<tbody>
 						<%
 						for (int i = startPage; i < lastPage; i++) {
@@ -158,7 +175,7 @@ BoardDAO boardDAO = new BoardDAO();
 						<tr class="border-bottom border-1 post-row"
 							onclick="location.href='viewPost.jsp?bdNo=<%=board.getBdNo() %>'">
 							<td><strong><%=board.getBdTitle() %></strong><br> 
-							<small><%=board.getBdContent() %></small><br> 
+							<div class="ellipsis"><%=board.getBdContent() %></div> 
 							<span><%=board.getUserName() %></span> · 
 							<span><%=board.getBdDate() %></span> · 
 							<span>조회수 <%=board.getBdViewCnt() %></span></td>

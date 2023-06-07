@@ -24,13 +24,21 @@ String uname = (String) session.getAttribute("user_name");
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="./style.css">
+<link href="./footer.css" rel="stylesheet">
+<link href="./logo.css" rel="stylesheet">
+
+<script src="https://kit.fontawesome.com/ae70f4c5ab.js"
+	crossorigin="anonymous"></script>
+<script
+	src="https://fonts.googleapis.com/css?family=Lato:300,400|Poppins:300,400,800&display=swap"></script>
+
+
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 	crossorigin="anonymous">
 	
 </script>
-<script src="./gardenList.js"></script>
 
 
 <title>실내정원용 식물</title>
@@ -509,26 +517,56 @@ String uname = (String) session.getAttribute("user_name");
 	</nav> <%
  }
  %> </main>
-	<div class="container">
-		<footer
-			class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-		<div class="col-md-4 d-flex align-items-center">
-			<a href="https://www.deu.ac.kr"
-				class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+	<footer class="site-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <h6>Gromi</h6>
+                            <p class="text-justify">Company. 구름빵 | Owner. 김시은
+                                <br>Businuess No. 051-xxx-xxxx | E-mail. xxxxx@gmail.com <br>
+                                Address. 부산광역시 부산진구 엄광로176(가야동)
+                            </p>
+                        </div>
 
-				<img
-				src="https://starteacher-v5-upload.s3.ap-northeast-2.amazonaws.com/institute/logoaf34051b140f0305b0593ebd85bf43b1170b2268067bd03b3e7a0353b0df1c8e877810ac50891df6e550db9a15ab69fe"
-				width="30">
-			</a> <span class="mb-3 mb-md-0 text-muted">&copy; Goormbbang
-				Company, Inc</span>
-		</div>
+                        <div class="col-xs-6 col-md-3">
+                            <h6>Categories</h6>
+                            <ul class="footer-links">
+                                <li><a href="http://scanfcode.com/category/c-language/">ABOUT US</a></li>
+                                <li><a href="http://scanfcode.com/category/front-end-development/">GUIDE</a></li>
+                                <li><a href="http://scanfcode.com/category/back-end-development/">PRIVACY</a></li>
+                                <li><a href="http://scanfcode.com/category/back-end-development/">HELP</a></li>
+                            </ul>
+                        </div>
 
-		<ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-			<li class="ms-3"><a class="text-muted" href="#"><svg
-						class="bi" width="24" height="24"> <use
-						xlink:href="#instagram" /> </svg></a></li>
-		</ul>
-		</footer>
-	</div>
+                        <div class="col-xs-6 col-md-3">
+                            <h6>Social</h6>
+                            <ul class="footer-links">
+                                <li><a href="http://scanfcode.com/about/">Instagram</a></li>
+                                <li><a href="http://scanfcode.com/contact/">Kakao</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-6 col-xs-12">
+                            <p class="copyright-text">Copyright &copy; Goormbbang Company, All rights reserved.
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <ul class="social-icons">
+                                <li><a class="facebook" href="https://www.instagram.com/nuexsera/"><i
+                                            class="fa fa-instagram"></i></a></li>
+                                <li><a class="twitter" href="https://www.instagram.com/jongmln_/"><i
+                                            class="fa fa-instagram"></i></a></li>
+                                <li><a class="dribbble" href="https://www.instagram.com/min_gon_med._.j/"><i
+                                            class="fa fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
 </body>
 </html>
