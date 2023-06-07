@@ -310,25 +310,6 @@ String cntntsNo = request.getParameter("cntntsNo");
 		out.println(resultMsg);
 	}
 %>
-<input type="button" onclick="javascript:fncList();" value="목록"/>
-<form name="searchApiForm">
-<%
-String[] searchNmArr = {"pageNo", "sType", "sText", "wordType", "word", "lightChkVal", "grwhstleChkVal", "lefcolrChkVal", "lefmrkChkVal", "flclrChkVal", "fmldecolrChkVal", "ignSeasonChkVal", "winterLwetChkVal", "priceType", "priceTypeSel", "waterCycleSel"};
-for(int i=0; i<searchNmArr.length; i++){
-	out.println("<input type='hidden' name='"+searchNmArr[i]+"' value='"+request.getParameter(searchNmArr[i])+"' />");
-}
-%>
-</form>
-<script type="text/javascript">
-//목록이동
-function fncList(){
-	with(document.searchApiForm){
-		method="get";
-		action = "gardenList.jsp";
-		target = "_self";
-		submit();
-	}
-}
-</script>
+
 </body>
 </html>
