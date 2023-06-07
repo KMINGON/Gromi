@@ -1,143 +1,65 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 String uid = (String) session.getAttribute("user_id");
 String uname = (String) session.getAttribute("user_name");
+String boardType = request.getParameter("boardType");
 %>
+
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gromi</title>
+<title>Document</title>
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
-<link href="./footer.css" rel="stylesheet">
 <link href="./logo.css" rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 	crossorigin="anonymous"></script>
-
 <script src="https://kit.fontawesome.com/ae70f4c5ab.js"
 	crossorigin="anonymous"></script>
 <script
 	src="https://fonts.googleapis.com/css?family=Lato:300,400|Poppins:300,400,800&display=swap"></script>
-
-<script>
-function clickedBtn(){
-	alert():
-    // 로딩 표시
-    showLoading();
-    // 로딩 숨기기(2초 후)
-    setTimeout("hideLoading()", 2000);
-    }
-    function showLoading(){
-    //화면의 높이와 너비를 구합니다.
-    var maskHeight = $(document).height();
-    var maskWidth  = window.document.body.clientWidth;
-
-    //화면에 출력할 마스크를 설정해줍니다.
-    var mask ="<div id='mask' style='position:absolute; z-index:1000; background-color:#000000; left:0; top:0;'></div>";
-
-    //화면에 레이어 추가
-    $('body')
-    .append(mask)
-
-    //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채웁니다.
-    $('#mask').css({
-    'width' : maskWidth
-    ,'height': maskHeight
-    ,'opacity' :'0.3'
-    });
-
-    $("#roadingStatus").show();
-    }
-function hideLoading(){
-    $("#mask").remove();
-    $("#roadingStatus").hide();
-}
-</script>
-
+<link href="../footer.css" rel="stylesheet" type="text/css">
+<link href="../logo.css" rel="stylesheet" type="text/css">
 <style>
-.spinner-border{
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	z-index: 1;
-	width: 3rem;
-	height: 3rem;
-
-}
-
 .nav-item {
 	padding-left: 50px;
 }
-
-.bg1 {
-	background-color: rgba(242, 245, 228);
+/* 버튼 선택했을 때 테두리 색 변경 */
+.btn-outline-secondary:focus, .btn-outline-secondary:active,
+	.btn-outline-secondary.active {
+	outline: none;
+	box-shadow: none;
+	border-color: green !important;
+	background-color: transparent !important; /* 배경색 투명으로 설정 */
+	color: green !important; /* 글자색 초록색으로 설정 */
 }
 
-.bg-image {
-	background-image:
-		url('https://huga.s3.ap-northeast-2.amazonaws.com/summernoteImg/161426454597122.gif');
-	bbackground-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
+/* 버튼에 마우스를 올려놓았을 때 배경색 변화 없음 */
+.btn-outline-secondary:hover {
+	background-color: transparent !important; /* 배경색 투명으로 설정 */
 }
 
-.bg-image2 {
-	background-image:
-		url('https://cdn.imweb.me/thumbnail/20230206/93d2c11b1db7e.jpg');
-	background-size: cover;
-}
-
-.bg-image3 {
-	background-image:
-		url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuJiFV5Tvq_g-zLg3LnigD5BEPJ01efPkoQ-0fSDDtE9nezWrdP-XYN3VNmsncZ8YsB54&usqp=CAU');
-	background-size: cover;
-}
-
-.bg-image4 {
-	background-image:
-		url('https://cdn.imweb.me/thumbnail/20220519/0709adc1f2404.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-.bg-image5 {
-	background-image:
-		url('https://cdn.imweb.me/thumbnail/20230206/0bf523f529d1c.jpg');
-	background-size: cover;
-}
-
-.bg-image6 {
-	background-image:
-		url('https://cdn.imweb.me/thumbnail/20230205/1c38da216b953.jpg');
-	background-size: cover;
-}
-
-.bg-image7 {
-	background-image:
-		url('https://cdn.imweb.me/thumbnail/20230205/0e236a5cd097f.jpg');
-	background-size: cover;
-}
+.btn-outline-secondary:focus:not(:active) {
+	box-shadow: none;
 }
 </style>
-<link href="style.css" rel="stylesheet">
 </head>
 
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark"
 		aria-label="main-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="./index.jsp">
+			<a class="navbar-brand" href="../index.jsp">
 				<div class="box">
 					<div class="title">
 						<span class="block"></span>
@@ -157,22 +79,22 @@ function hideLoading(){
 			<div class="collapse navbar-collapse" id="navBoard">
 				<ul class="navbar-nav me-auto mb-2 mb-sm-0">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="./index.jsp">홈</a></li>
+						aria-current="page" href="../index.jsp">홈</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="./gardenList.jsp">식물 검색</a></li>
+						href="../gardenList.jsp">식물 검색</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="./recommend.jsp">식물 추천</a></li>
+						href="../recommend.jsp">식물 추천</a></li>
 
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item"
-								href="board/viewBoard.jsp?boardType=free">자유 게시판</a></li>
+								href="../board/viewBoard.jsp?boardType=free">자유 게시판</a></li>
 							<li><a class="dropdown-item"
-								href="board/viewBoard.jsp?boardType=QA">Q&A 게시판</a></li>
+								href="../board/viewBoard.jsp?boardType=QA">Q&A 게시판</a></li>
 							<li><a class="dropdown-item"
-								href="board/viewBoard.jsp?boardType=sale">분양 게시판</a></li>
+								href="../board/viewBoard.jsp?boardType=sale">분양 게시판</a></li>
 						</ul></li>
 				</ul>
 
@@ -184,15 +106,15 @@ function hideLoading(){
 							%> <a class="nav-link dropdown-toggle" href="#"
 							data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="login/signin.jsp">로그인</a></li>
-								<li><a class="dropdown-item" href="login/signup.jsp">회원가입</a></li>
+								<li><a class="dropdown-item" href="../login/signin.jsp">로그인</a></li>
+								<li><a class="dropdown-item" href="../login/signup.jsp">회원가입</a></li>
 							</ul> <%
  } else {
  %> <a class="nav-link dropdown-toggle" href="#"
 							data-bs-toggle="dropdown" aria-expanded="false"><%=uname%></a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="login/editUser.jsp">개인정보수정</a></li>
-								<li><a class="dropdown-item" href="login/logout.jsp">로그아웃</a></li>
+								<li><a class="dropdown-item" href="../login/editUser.jsp">개인정보수정</a></li>
+								<li><a class="dropdown-item" href="../login/logout.jsp">로그아웃</a></li>
 							</ul> <%
  }
  %>
@@ -202,81 +124,111 @@ function hideLoading(){
 			</div>
 		</div>
 	</nav>
-
-
-
 	<!--코드 작성-->
-	<main>
-		<!-- 인디케이터 포함 캐러셀 -->
-
-		<div class="spinner-border roadingStatus" id="roadingStatus"
-			role="status" style="display: none;">
-			<span class="sr-only">Loading...</span>
-		</div>
-
-		<div class="flex-md-equal p-3 p-md-5 m-md-3 text-center bg1">
-			<div class="col-md-5 mx-auto my-3">
-				<h1 class="display-3 fw-bold">GROMI</h1>
-				<p class="lead fw-bold">
-					알고싶은 식물을 검색하고</br> 원하는 식물에 대해 찾아보세요!
-				</p>
-				<a class="btn btn-outline-secondary" onclick="clickedBtn()"
-					href="./gardenList.jsp">많은 식물 알아보기</a>
+	<div
+		class="container-fluid d-flex align-items-center justify-content-center"
+		style="height: 100vh;">
+		<div class="row">
+			<div class="col-md-12 text-center mb-5">
+				<h1 class="fw-bold"
+					style="font-family: 'Arial Rounded MT Bold', sans-serif; font-size: 50px;">
+					<span style="color: green; text-decoration: underline;">열매색</span>을
+					찾고 있나요?
+				</h1>
 			</div>
-			<div id="carouselExampleIndicators" class="carousel slide"
-				data-bs-ride="carousel">
-				<div class="carousel-inner">
-					<!-- data-bs-interval : 슬라이드 지연 시간 -->
-					<div class="carousel-item active" data-bs-interval="2000">
-						<div class="bg-dark shadow-sm mx-auto bg-image5"
-							style="width: 640px; height: 300px; border-radius: 21px 21px 0 0; background-size: cover;"></div>
-
-					</div>
-					<div class="carousel-item" data-bs-interval="2000">
-						<div class="bg-dark shadow-sm mx-auto bg-image2"
-							style="width: 640px; height: 300px; border-radius: 21px 21px 0 0; background-size: cover;"></div>
-					</div>
-					<div class="carousel-item" data-bs-interval="2000">
-						<div class="bg-dark shadow-sm mx-auto bg-image6"
-							style="width: 640px; height: 300px; border-radius: 21px 21px 0 0; background-size: cover;"></div>
-					</div>
-					<div class="carousel-item" data-bs-interval="2000">
-						<div class="bg-dark shadow-sm mx-auto bg-image7"
-							style="width: 640px; height: 300px; border-radius: 21px 21px 0 0;"></div>
-					</div>
+			<div class="col-md-12 d-flex justify-content-center">
+				<div class="d-flex justify-content-center">
+					<button
+						class="btn btn-primary btn-lg rounded-pill mx-2 custom-button"
+						onclick="toggleButton(this)"
+						style="border-color: green; color: white; font-size: 1.2rem; background-color: green;">&lt;</button>
+					<button
+						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
+						onclick="toggleButton(this)"
+						style="border-color: gray; color: gray; font-size: 26px;">파랑색</button>
+					<button
+						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
+						onclick="toggleButton(this)"
+						style="border-color: gray; color: gray; font-size: 26px;">보라색</button>
+					<button
+						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
+						onclick="toggleButton(this)"
+						style="border-color: gray; color: gray; font-size: 26px;">검정색</button>
+					<button
+						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
+						onclick="toggleButton(this)"
+						style="border-color: gray; color: gray; font-size: 26px;">빨강색</button>
 				</div>
 			</div>
-
-		</div>
-
-
-		<div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-			<div
-				class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden ">
-				<div class="my-3 py-3">
-					<h2 class="display-4 fw-bold">식물 추천</h2>
-					<p class="lead fw-normal">그로미의 추천을 받아 당신의 식물을 찾아보세요.</p>
-					<a class="btn btn-outline-secondary" href="./recommend.jsp">식물
-						추천 바로가기</a>
+			<div class="col-md-12 d-flex justify-content-center mt-3">
+				<div class="d-flex justify-content-center">
+					<button
+						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
+						onclick="toggleButton(this)"
+						style="border-color: gray; color: gray; font-size: 26px;">오렌지색</button>
+					<button
+						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
+						onclick="toggleButton(this)"
+						style="border-color: gray; color: gray; font-size: 26px;">흰색</button>
+					<button
+						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
+						onclick="toggleButton(this)"
+						style="border-color: gray; color: gray; font-size: 26px;">기타</button>
+					<button
+						class="btn btn-primary btn-lg rounded-pill mx-2 custom-button"
+						onclick="toggleButton(this)"
+						style="border-color: green; color: white; font-size: 1.2rem; background-color: green;">검색</button>
 				</div>
-				<div class="bg-dark shadow-sm mx-auto bg-image4"
-					style="width: 80%; height: 450px; border-radius: 21px 21px 0 0;"></div>
-			</div>
-			<div
-				class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden ">
-				<div class="my-3 p-3">
-					<h2 class="display-4 fw-bold">커뮤니티</h2>
-					<p class="lead fw-normal">당신의 식물을 공유해보세요.</p>
-					<a class="btn btn-outline-secondary" href="./board/viewBoard.jsp?boardType=free">커뮤니티
-						바로가기</a>
-				</div>
-				<div class="bg-dark shadow-sm mx-auto bg-image"
-					style="width: 70%; height: 450px; border-radius: 21px 21px 0 0;"></div>
 			</div>
 		</div>
+	</div>
 
 
-	</main>
+	<script>
+		function toggleButton(button) {
+			// 첫 페이지 버튼의 텍스트
+			const requestCategory = localStorage.getItem('recommendBtn');
+			// 현재 페이지에서 선택한 버튼의 텍스트
+			const btnText = button.textContent;
+			// 선택한 세부 항목에 대한 코드
+			const detailCode = categoryCode[requestCategory][btnText];
+
+			localStorage.setItem('detailCode', detailCode);
+			localStorage.setItem('choiceBtn', button.textContent);
+			button.classList.toggle('active');
+			button.style.borderColor = button.classList.contains('active') ? 'green'
+					: 'gray';
+			button.style.color = button.classList.contains('active') ? 'white'
+					: 'gray';
+			if (button.classList.contains('active')) {
+				// 선택한 버튼의 텍스트 가져오기
+				let buttonText = button.textContent.trim();
+
+				// 버튼이 '>'인 경우 recommend.jsp로 이동
+				if (buttonText === '<') {
+					window.location.href = '../recommend.jsp';
+				} else if (buttonText === '파랑색') {
+					window.location.href = '../plantview.jsp';
+				} else if (buttonText === '보라색') {
+					window.location.href = '../plantview.jsp';
+				} else if (buttonText === '검은색') {
+					window.location.href = '../plantview.jsp';
+				} else if (buttonText === '빨강색') {
+					window.location.href = '../plantview.jsp';
+				} else if (buttonText === '오렌지색') {
+					window.location.href = '../plantview.jsp';
+				} else if (buttonText === '노랑색') {
+					window.location.href = '../plantview.jsp';
+				} else if (buttonText === '흰색') {
+					window.location.href = '../plantview.jsp';
+				} else if (buttonText === '혼합색') {
+					window.location.href = '../plantview.jsp';
+				} else if (buttonText === '기타') {
+					window.location.href = '../plantview.jsp';
+				}
+			}
+		}
+	</script>
 
 
 	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">

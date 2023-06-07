@@ -22,6 +22,23 @@ String uname = (String)session.getAttribute("user_name");
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
+<link href="../footer.css" rel="stylesheet">
+<link href="../logo.css" rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+	crossorigin="anonymous"></script>
+
+<script src="https://kit.fontawesome.com/ae70f4c5ab.js"
+	crossorigin="anonymous"></script>
+<script
+	src="https://fonts.googleapis.com/css?family=Lato:300,400|Poppins:300,400,800&display=swap"></script>
+
 <style>
 .nav-item {
 	padding-left: 50px;
@@ -33,55 +50,66 @@ String uname = (String)session.getAttribute("user_name");
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark"
 		aria-label="main-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="../index.jsp">Gromi</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navBoard"
-				aria-controls="navBoard" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+			<a class="navbar-brand" href="../index.jsp">
+            <div class="box">
+                <div class="title">
+                    <span class="block"></span>
+                    <h1>Gromi<span></span></h1>
+                </div>
+            </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBoard"
+                aria-controls="navBoard" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-			<div class="collapse navbar-collapse" id = "navBoard">
-				<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-					<li class="nav-item"><a class="nav-link" aria-current="page"
-						href="../index.jsp">홈</a></li>
-					<li class="nav-item"><a class="nav-link" href="../recommend/recommend.html">식물 추천</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">블로그</a></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle active" href="#"
-						data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="../board/viewBoard.jsp?boardType=free">자유 게시판</a></li>
+            <div class="collapse navbar-collapse" id = "navBoard">
+                <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../index.jsp">홈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../gardenList.jsp">식물 검색</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../recommend.jsp">식물 추천</a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            aria-expanded="false">커뮤니티</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../board/viewBoard.jsp?boardType=free">자유 게시판</a></li>
                             <li><a class="dropdown-item" href="../board/viewBoard.jsp?boardType=QA">Q&A 게시판</a></li>
                             <li><a class="dropdown-item" href="../board/viewBoard.jsp?boardType=sale">분양 게시판</a></li>
-						</ul></li>
-				</ul>
-
-				<div class="justify-content-end">
-					<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div class="justify-content-end">
+                    <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                         <li class="nav-item dropdown">
                                 <%if(uid == null) {%>
                             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                 aria-expanded="false">마이페이지</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="signin.jsp">로그인</a></li>
-                                <li><a class="dropdown-item" href="signup.jsp">회원가입</a></li>
+                                <li><a class="dropdown-item" href="../login/signin.jsp">로그인</a></li>
+                                <li><a class="dropdown-item" href="../login/signup.jsp">회원가입</a></li>
                             </ul>
                             <%} else{%>
                             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                 aria-expanded="false"><%=uname %></a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="editUser.jsp">개인정보수정</a></li>
-                                <li><a class="dropdown-item" href="logout.jsp">로그아웃</a></li>
+                                <li><a class="dropdown-item" href="../login/editUser.jsp">개인정보수정</a></li>
+                                <li><a class="dropdown-item" href="../login/logout.jsp">로그아웃</a></li>
                             </ul>
                             <%} %>
                         </li>
                     </ul>
-				</div>
-			</div>
-		</div>
-	</nav>
-
+                </div>
+            </div>
+        </div>
+    </nav>
 
 	<!--코드 작성 시작-->
 	<div class="container">
@@ -128,28 +156,62 @@ String uname = (String)session.getAttribute("user_name");
     </svg>
 
 
-	<div class="container">
-		<footer
-			class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-			<div class="col-md-4 d-flex align-items-center">
-				<a href="/"
-					class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+	<footer class="site-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-6">
+					<h6>Gromi</h6>
+					<p class="text-justify">
+						Company. 구름빵 | Owner. 이종민 <br>Businuess No. 051-890-1724 |
+						E-mail. cse@gmail.com <br> Address. 부산광역시 부산진구 엄광로176(가야동)
+					</p>
+				</div>
 
-					<img
-					src="https://starteacher-v5-upload.s3.ap-northeast-2.amazonaws.com/institute/logoaf34051b140f0305b0593ebd85bf43b1170b2268067bd03b3e7a0353b0df1c8e877810ac50891df6e550db9a15ab69fe"
-					width="30">
-				</a> <span class="mb-3 mb-md-0 text-muted">&copy; Goormbbang
-					Company, Inc</span>
+				<div class="col-xs-6 col-md-3">
+					<h6>Categories</h6>
+					<ul class="footer-links">
+						<li><a href="https://se.deu.ac.kr/se/index.do">ABOUT US</a></li>
+						<li><a href="./index.jsp">HOME</a></li>
+						<li><a href="./recommend.jsp">RECOMMEND</a></li>
+						<li><a href="./board/viewBoard.jsp?boardType=free">COMMUNITY</a></li>
+					</ul>
+				</div>
+
+				<div class="col-xs-6 col-md-3">
+					<h6>Social</h6>
+					<ul class="footer-links">
+						<li><a href="https://www.instagram.com/deu_smartcse/">CSE
+								Instagram</a></li>
+						<li><a href="https://open.kakao.com/o/gfoeUk8e">Cloud
+								Class Kakao</a></li>
+					</ul>
+				</div>
 			</div>
+			<hr>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-sm-6 col-xs-12">
+					<p class="copyright-text">Copyright &copy; Goormbbang Company,
+						All rights reserved.</p>
+				</div>
 
-			<ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-				<li class="ms-3"><a class="text-muted" href="#"><svg
-							class="bi" width="24" height="24">
-                            <use xlink:href="#instagram" />
-                        </svg></a></li>
-			</ul>
-		</footer>
-	</div>
+				<div class="col-md-4 col-sm-6 col-xs-12">
+					<ul class="social-icons">
+						<li><a class="facebook"
+							href="https://www.instagram.com/nuexsera/"><i
+								class="fa fa-instagram"></i></a></li>
+						<li><a class="twitter"
+							href="https://www.instagram.com/jongmln_/"><i
+								class="fa fa-instagram"></i></a></li>
+						<li><a class="dribbble"
+							href="https://www.instagram.com/min_gon_med._.j/"><i
+								class="fa fa-instagram"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
 </body>
 
 </html>

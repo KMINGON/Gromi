@@ -1,22 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="model.ConnectMysql"%>
-<%@ page import="model.boarddata.BoardDAO"%>
-<%@ page import="model.boarddata.Board"%>
-<%@ page import="java.util.ArrayList"%>
-<%
-String boardType = request.getParameter("boardType");
-String pageTemp = request.getParameter("page");
-Integer pageNum;
-if(pageTemp == null) pageNum = 1;
-else pageNum = Integer.parseInt(pageTemp);
-%>
 <!DOCTYPE html>
 <html lang="en">
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 String uid = (String) session.getAttribute("user_id");
 String uname = (String) session.getAttribute("user_name");
-BoardDAO boardDAO = new BoardDAO();
+String boardType = request.getParameter("boardType");
 %>
 
 <head>
@@ -30,53 +19,39 @@ BoardDAO boardDAO = new BoardDAO();
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
-<link href="./logo.css" rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 	crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/ae70f4c5ab.js"
-	crossorigin="anonymous"></script>
+<script type="text/javascript" src="../js/variable.js"></script>
 <script
 	src="https://fonts.googleapis.com/css?family=Lato:300,400|Poppins:300,400,800&display=swap"></script>
 <link href="../footer.css" rel="stylesheet" type="text/css">
 <link href="../logo.css" rel="stylesheet" type="text/css">
+
 <style>
 .nav-item {
 	padding-left: 50px;
 }
-</style>
-<style>
-.board {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
+/* 버튼 선택했을 때 테두리 색 변경 */
+.btn-outline-secondary:focus, .btn-outline-secondary:active,
+	.btn-outline-secondary.active {
+	outline: none;
+	box-shadow: none;
+	border-color: green !important;
+	background-color: transparent !important; /* 배경색 투명으로 설정 */
+	color: green !important; /* 글자색 초록색으로 설정 */
+}
+
+/* 버튼에 마우스를 올려놓았을 때 배경색 변화 없음 */
+.btn-outline-secondary:hover {
+	background-color: transparent !important; /* 배경색 투명으로 설정 */
+}
+
+.btn-outline-secondary:focus:not(:active) {
+	box-shadow: none;
 }
 </style>
-<style>
-.post-row:hover {
-	background-color: #f8f9fa;
-	cursor: pointer;
-}
-</style>
-<style>
-  .fixed-table {
-    table-layout: fixed;
-    width: 100%;
-  }
-
-  .ellipsis {
-    display: block;
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-wrap: break-word;
-  }
-</style>
-
-
 </head>
 
 <body>
@@ -145,84 +120,115 @@ BoardDAO boardDAO = new BoardDAO();
     </nav>
 
 
-	<!--코드 작성 시작-->
+	<!--코드 작성-->
+	<div
+		class="container-fluid d-flex align-items-center justify-content-center"
+		style="height: 100vh;">
+		<div class="row">
+			<div class="col-md-12 text-center mb-5">
+				<h1 class="fw-bold"
+					style="font-family: 'Arial Rounded MT Bold', sans-serif; font-size: 50px;">
+					<span style="color: green; text-decoration: underline;">잎색</span>를
+					찾고 있나요?
+				</h1>
+			</div>
+			<div class="col-md-12 d-flex justify-content-center">
+				<div class="d-flex justify-content-center">
+					<button
+						class="btn btn-primary btn-lg rounded-pill mx-2 custom-button"
+						onclick="toggleButton(this)"
+						style="border-color: green; color: white; font-size: 1.2rem; background-color: green;">&lt;</button>
+					<button
+						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
+						onclick="toggleButton(this)"
+						style="border-color: gray; color: gray; font-size: 26px;">녹색,
+						연두색</button>
+					<button
+						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
+						onclick="toggleButton(this)"
+						style="border-color: gray; color: gray; font-size: 26px;">금색,
+						노란색</button>
+					<button
+						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
+						onclick="toggleButton(this)"
+						style="border-color: gray; color: gray; font-size: 26px;">흰색,
+						크림색</button>
+					<button
+						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
+						onclick="toggleButton(this)"
+						style="border-color: gray; color: gray; font-size: 26px;">은색,
+						회색</button>
 
-	<div class="container mt-5">
-		<div class="row justify-content-center">
-			<div class="col-lg-10">
-				<%
-				if (boardType == null || boardType.equals("free")) {
-					boardType = "free";
-				%>
-				<h1 class="mb-4">자유 게시판</h1>
-				<%
-				} else if (boardType.equals("QA")) {
-				%>
-				<h1 class="mb-4">Q&A 게시판</h1>
-				<%
-				} else if (boardType.equals("sale")) {
-				%>
-				<h1 class="mb-4">분양 게시판</h1>
-				<%
-				}
-				ArrayList<Board> boards = (ArrayList) boardDAO.findByBdType(boardType);
-				int postCnt = boards.size();
-				int pageCnt = 0;
-				if(postCnt%4 == 0) pageCnt = postCnt/4;
-				else pageCnt = postCnt/4 + 1;
-				int startPage = (pageNum - 1) * 4;
-				int lastPage = (pageNum * 4);
-				int nextPage = pageNum + 1;
-				if(nextPage > pageCnt) nextPage = pageCnt;
-				int prevPage = pageNum - 1;
-				if(prevPage < 1) prevPage = 1;
-				if(lastPage > postCnt) lastPage = postCnt;
-				
-				%>
-				<table class="table fixed-table">
-					<tbody>
-						<%
-						for (int i = startPage; i < lastPage; i++) {
-							Board board = boards.get(i);
-						%>
-						<tr class="border-bottom border-1 post-row"
-							onclick="location.href='viewPost.jsp?bdNo=<%=board.getBdNo() %>'">
-							<td><strong><%=board.getBdTitle() %></strong><br> 
-							<div class="ellipsis"><%=board.getBdContent() %></div> 
-							<span><%=board.getUserName() %></span> · 
-							<span><%=board.getBdDate() %></span> · 
-							<span>조회수 <%=board.getBdViewCnt() %></span></td>
-						</tr>
-						<%
-						}
-						%>
-					</tbody>
-				</table>
-				<div class="d-flex justify-content-between align-items-center">
-					<nav aria-label="Page navigation">
-						<ul class="pagination">
-							<li class="page-item"><a class="page-link" href="viewBoard.jsp?boardType=<%=boardType%>&page=<%=prevPage%>"
-								>이전</a></li>
-								<%for(int i = 1; i <= pageCnt; i++){ 
-								if(i == pageNum){%>
-							<li class="page-item active"><a class="page-link" href="#"><%=i%></a></li>
-							<%}else{ %>
-							<li class="page-item"><a class="page-link" href="viewBoard.jsp?boardType=<%=boardType%>&page=<%=i%>"><%=i%></a></li>
-							<%}}%>
-							<li class="page-item"><a class="page-link" href="viewBoard.jsp?boardType=<%=boardType%>&page=<%=nextPage%>">다음</a></li>
-						</ul>
-					</nav>
-					<button type="button" class="btn btn-outline-dark"
-						onclick=<%if (uid != null) {%> "location.href='createPost.jsp?boardType=<%=boardType %>'
-						"<%} else {%>"alert('로그인을 해주세요!')"<%}%>>게시글 작성</button>
+				</div>
+			</div>
+			<div class="col-md-12 d-flex justify-content-center mt-3">
+				<div class="d-flex justify-content-center">
+					<button
+						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
+						onclick="toggleButton(this)"
+						style="border-color: gray; color: gray; font-size: 26px;">빨강,
+						분홍, 자주색</button>
+					<button
+						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
+						onclick="toggleButton(this)"
+						style="border-color: gray; color: gray; font-size: 26px;">여러색
+						혼합</button>
+					<button
+						class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
+						onclick="toggleButton(this)"
+						style="border-color: gray; color: gray; font-size: 26px;">기타</button>
+					<button
+						class="btn btn-primary btn-lg rounded-pill mx-2 custom-button"
+						onclick="toggleButton(this)"
+						style="border-color: green; color: white; font-size: 1.2rem; background-color: green;">검색</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 
+	<script>
+		function toggleButton(button) {
+			// 첫 페이지 버튼의 텍스트
+			const requestCategory = localStorage.getItem('recommendBtn');
+			// 현재 페이지에서 선택한 버튼의 텍스트
+			const btnText = button.textContent;
+			// 선택한 세부 항목에 대한 코드
+			const detailCode = categoryCode[requestCategory][btnText];
 
-	<!--코드 작성 종료-->
+			localStorage.setItem('detailCode', detailCode);
+			localStorage.setItem('choiceBtn', button.textContent);
+			button.classList.toggle('active');
+			button.style.borderColor = button.classList.contains('active') ? 'green'
+					: 'gray';
+			button.style.color = button.classList.contains('active') ? 'white'
+					: 'gray';
+			if (button.classList.contains('active')) {
+				// 선택한 버튼의 텍스트 가져오기
+				let buttonText = button.textContent.trim();
+
+				// 버튼이 '<'인 경우 recommend.jsp로 이동
+				if (buttonText === '<') {
+					window.location.href = '../recommend.jsp';
+				} else if (buttonText === '녹색, 연두색') {
+					window.location.href = '../plantview.jsp';
+				} else if (buttonText === '금색, 노란색') {
+					window.location.href = '../plantview.jsp';
+				} else if (buttonText === '흰색, 크림색') {
+					window.location.href = '../plantview.jsp';
+				} else if (buttonText === '은색, 회색') {
+					window.location.href = '../plantview.jsp';
+				} else if (buttonText === '빨강, 분홍, 자주색') {
+					window.location.href = '../plantview.jsp';
+				} else if (buttonText === '여러색 혼합') {
+					window.location.href = '../plantview.jsp';
+				} else if (buttonText === '기타') {
+					window.location.href = '../plantview.jsp';
+				}
+			}
+		}
+	</script>
+
 
 	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="instagram" viewBox="0 0 16 16">
@@ -289,4 +295,5 @@ BoardDAO boardDAO = new BoardDAO();
 		</div>
 	</footer>
 </body>
+
 </html>
