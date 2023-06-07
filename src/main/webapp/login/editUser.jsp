@@ -1,16 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="model.boarddata.BoardDAO"%>
-<%@ page import="model.boarddata.Board"%>
 <!DOCTYPE html>
 <html lang="en">
 <%
-String uid = (String) session.getAttribute("user_id");
-String uname = (String) session.getAttribute("user_name");
-String boardType = request.getParameter("boardType");
-Integer bdNo = Integer.parseInt(request.getParameter("bdNo"));
-BoardDAO boardDAO = new BoardDAO();
-Board board = boardDAO.findById(bdNo);
+String uid = (String)session.getAttribute("user_id");
+String uname = (String)session.getAttribute("user_name");
 %>
 
 <head>
@@ -47,85 +41,78 @@ Board board = boardDAO.findById(bdNo);
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div class="collapse navbar-collapse" id="navBoard">
+			<div class="collapse navbar-collapse" id = "navBoard">
 				<ul class="navbar-nav me-auto mb-2 mb-sm-0">
 					<li class="nav-item"><a class="nav-link" aria-current="page"
 						href="../index.jsp">홈</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../recommend/recommend.html">식물 추천</a></li>
+					<li class="nav-item"><a class="nav-link" href="../recommend/recommend.html">식물 추천</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">블로그</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle active" href="#"
 						data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item"
-								href="viewBoard.jsp?boardType=free">자유 게시판</a></li>
-							<li><a class="dropdown-item"
-								href="viewBoard.jsp?boardType=QA">Q&A 게시판</a></li>
-							<li><a class="dropdown-item"
-								href="viewBoard.jsp?boardType=sale">분양 게시판</a></li>
+							<li><a class="dropdown-item" href="../board/viewBoard.jsp?boardType=free">자유 게시판</a></li>
+                            <li><a class="dropdown-item" href="../board/viewBoard.jsp?boardType=QA">Q&A 게시판</a></li>
+                            <li><a class="dropdown-item" href="../board/viewBoard.jsp?boardType=sale">분양 게시판</a></li>
 						</ul></li>
 				</ul>
 
 				<div class="justify-content-end">
 					<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-						<li class="nav-item dropdown">
-							<%
-							if (uid == null) {
-							%> <a class="nav-link dropdown-toggle" href="#"
-							data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="../login/signin.jsp">로그인</a></li>
-								<li><a class="dropdown-item" href="../login/signup.jsp">회원가입</a></li>
-							</ul> <%
- 							} else {
- 							%> <a class="nav-link dropdown-toggle" href="#"
-							data-bs-toggle="dropdown" aria-expanded="false"><%=uname%></a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="../login/editUser.jsp">개인정보수정</a></li>
-								<li><a class="dropdown-item" href="../login/logout.jsp">로그아웃</a></li>
-							</ul> <%
- }
- %>
-						</li>
-					</ul>
+                        <li class="nav-item dropdown">
+                                <%if(uid == null) {%>
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                aria-expanded="false">마이페이지</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="signin.jsp">로그인</a></li>
+                                <li><a class="dropdown-item" href="signup.jsp">회원가입</a></li>
+                            </ul>
+                            <%} else{%>
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                aria-expanded="false"><%=uname %></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="editUser.jsp">개인정보수정</a></li>
+                                <li><a class="dropdown-item" href="logout.jsp">로그아웃</a></li>
+                            </ul>
+                            <%} %>
+                        </li>
+                    </ul>
 				</div>
 			</div>
 		</div>
 	</nav>
 
+
 	<!--코드 작성 시작-->
-	 <div class="container mt-5">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card" style="border:black;">
-          <div class="card-header bg-dark text-white">
-            <h3>게시글 수정</h3>
-          </div>
-          <div class="card-body">
-            <form action = "editPostAction.jsp">
-              <div class="form-group">
-                <label for="title" class="font-weight-bold">제목</label>
-                <input type="text" class="form-control" id="title" value="<%=board.getBdTitle() %>"
-                 name = "title" placeholder="제목을 입력하세요" required>
-              </div>
-              <div class="form-group">
-                <label for="content" class="font-weight-bold">내용</label>
-                <textarea class="form-control" id="content"
-                 name = "content" rows="10" placeholder="내용을 입력하세요" required><%=board.getBdContent() %></textarea>
-              </div>
-              <div class="form-group d-flex justify-content-end">
-                <button type="submit" class="btn btn-dark mr-2">수정완료</button>
-                <button type="button" class="btn btn-outline-dark"
-                 onclick="history.back();">취소</button>
-              </div>
-              <input type="hidden" name="bdNo" value="<%=board.getBdNo()%>">
-            </form>
-          </div>
+	<div class="container">
+    <div class="row vh-100 justify-content-center align-items-center">
+        <div class="col-md-4">
+            <div class="card border-0">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">개인정보수정</h2>
+                    <form action = "editUserAction.jsp">
+                        <div class="mb-3">
+                            <label for="inputPassword" class="form-label">비밀번호</label>
+                            <input type="password" class="form-control" id="inputPassword" name = "inputPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputConfirmPassword" class="form-label">비밀번호 확인</label>
+                            <input type="password" class="form-control" id="inputConfirmPassword" name = "inputConfirmPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputName" class="form-label">이름</label>
+                            <input type="text" class="form-control" id="inputName" name = "inputName" required>
+                        </div>
+                        <div class="d-flex justify-content-center mb-2">
+                            <button type="submit" class="btn btn-primary">수정하기</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+
 
 	<!--코드 작성 종료-->
 

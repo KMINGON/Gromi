@@ -86,7 +86,7 @@ boardDAO.update(bdNo, board);
  %> <a class="nav-link dropdown-toggle" href="#"
 							data-bs-toggle="dropdown" aria-expanded="false"><%=uname%></a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">개인정보수정</a></li>
+								<li><a class="dropdown-item" href="../login/editUser.jsp">개인정보수정</a></li>
 								<li><a class="dropdown-item" href="../login/logout.jsp">로그아웃</a></li>
 							</ul> <%
  }
@@ -108,7 +108,7 @@ boardDAO.update(bdNo, board);
 					· 조회수 <%=board.getBdViewCnt()%></small>
 				<hr>
 				<div class="mt-3 mb-3">
-					<p><%=board.getBdContent()%></p>
+					<p style = "word-wrap:break-word"><%=board.getBdContent()%></p>
 				</div>
 				<hr>
 				<%
@@ -156,7 +156,7 @@ boardDAO.update(bdNo, board);
 						class="text-muted" style="font-size: 0.8rem;">삭제</a>
 					</span>
 					<%} %>
-					<p><%=comment.getBdComment()%></p>
+					<p style = "word-wrap:break-word"><%=comment.getBdComment()%></p>
 				</div>
 				<%
 				}

@@ -77,7 +77,7 @@ String boardType = request.getParameter("boardType");
  							%> <a class="nav-link dropdown-toggle" href="#"
 							data-bs-toggle="dropdown" aria-expanded="false"><%=uname%></a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">개인정보수정</a></li>
+								<li><a class="dropdown-item" href="../login/editUser.jsp">개인정보수정</a></li>
 								<li><a class="dropdown-item" href="../login/logout.jsp">로그아웃</a></li>
 							</ul> <%
  }
