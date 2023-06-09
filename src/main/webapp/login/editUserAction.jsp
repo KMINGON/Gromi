@@ -36,7 +36,7 @@ String uname = (String)session.getAttribute("user_name");
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('수정 완료!')");
-		script.println("location.href = '../index.jsp'");
+		script.println("location.href = 'logout.jsp'");
 		script.println("</script>");
 	}
 	%>
