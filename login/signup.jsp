@@ -1,11 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-String uid = (String) session.getAttribute("user_id");
-String uname = (String) session.getAttribute("user_name");
-String boardType = request.getParameter("boardType");
+String uid = (String)session.getAttribute("user_id");
+String uname = (String)session.getAttribute("user_name");
 %>
 
 <head>
@@ -19,11 +18,13 @@ String boardType = request.getParameter("boardType");
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
+<link href="./logo.css" rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 	crossorigin="anonymous"></script>
-<script type="text/javascript" src="../js/variable.js"></script>
+<script src="https://kit.fontawesome.com/ae70f4c5ab.js"
+	crossorigin="anonymous"></script>
 <script
 	src="https://fonts.googleapis.com/css?family=Lato:300,400|Poppins:300,400,800&display=swap"></script>
 <link href="../footer.css" rel="stylesheet" type="text/css">
@@ -31,90 +32,6 @@ String boardType = request.getParameter("boardType");
 <style>
 .nav-item {
 	padding-left: 50px;
-}
-
-/* 버튼 선택했을 때 테두리 색 변경 */
-.btn-outline-secondary:focus, .btn-outline-secondary:active,
-	.btn-outline-secondary.active {
-	outline: none;
-	box-shadow: none;
-	border-color: green !important;
-	background-color: transparent !important;
-	/* 배경색 투명으로 설정 */
-	color: green !important;
-	/* 글자색 초록색으로 설정 */
-}
-
-/* 버튼에 마우스를 올려놓았을 때 배경색 변화 없음 */
-.btn-outline-secondary:hover {
-	background-color: transparent !important;
-	/* 배경색 투명으로 설정 */
-}
-
-.btn-outline-secondary:focus:not(:active) {
-	box-shadow: none;
-}
-
-/* 페이지 이동 시 슬라이드*/
-.slide-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	overflow: hidden;
-}
-
-.slide-content {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	position: relative;
-	animation: slide 1s forwards;
-}
-
-.slide-out-left {
-	animation: slide-out-left 1s forwards;
-}
-
-@
-keyframes slide { 0% {
-	opacity: 0;
-	transform: translateX(-100%);
-}
-
-100
-%
-{
-opacity
-:
-1;
-transform
-:
-translateX(
-0
-);
-}
-}
-@
-keyframes slide-out-left { 0% {
-	opacity: 1;
-	transform: translateX(0);
-}
-100
-%
-{
-opacity
-:
-0;
-transform
-:
-translateX(
--100%
-);
-}
 }
 </style>
 </head>
@@ -184,118 +101,49 @@ translateX(
         </div>
     </nav>
 
+	<!--코드 작성 시작-->
+	<div class="container">
+    <div class="row vh-100 justify-content-center align-items-center">
+        <div class="col-md-4">
+            <div class="card border-0">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">회원가입</h2>
+                    <form action = "signupAction.jsp">
+                        <div class="mb-3">
+                            <label for="inputID" class="form-label">아이디</label>
+                            <input type="text" class="form-control" id="inputID" name = "inputID" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputPassword" class="form-label">비밀번호</label>
+                            <input type="password" class="form-control" id="inputPassword" name = "inputPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputConfirmPassword" class="form-label">비밀번호 확인</label>
+                            <input type="password" class="form-control" id="inputConfirmPassword" name = "inputConfirmPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputName" class="form-label">이름</label>
+                            <input type="text" class="form-control" id="inputName" name = "inputName" required>
+                        </div>
+                        <div class="d-flex justify-content-center mb-2">
+                            <button type="submit" class="btn btn-primary">가입하기</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-	<!--코드 작성-->
-	<div
-		class="container-fluid d-flex align-items-center justify-content-center"
-		style="height: 100vh;">
-		<div class="row">
-			<div class="col-md-12 text-center mb-5">
-				<h1 class="fw-bold"
-					style="font-family: 'Arial Rounded MT Bold', sans-serif; font-size: 50px;">
-					<span style="color: green; text-decoration: underline;">꽃피는
-						계절</span>을 찾고 있나요?
-				</h1>
-			</div>
-			<div class="col-md-12 d-flex justify-content-center">
-				<button
-					class="btn btn-primary btn-lg rounded-pill mx-2 custom-button"
-					onclick="toggleButton(this)"
-					style="border-color: green; color: white; font-size: 1.2rem; background-color: green;">&lt;</button>
-				<button
-					class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
-					onclick="toggleButton(this)"
-					style="border-color: gray; color: gray; font-size: 26px;">봄</button>
-				<button
-					class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
-					onclick="toggleButton(this)"
-					style="border-color: gray; color: gray; font-size: 26px;">여름</button>
-				<button
-					class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
-					onclick="toggleButton(this)"
-					style="border-color: gray; color: gray; font-size: 26px;">가을</button>
-				<button
-					class="btn btn-outline-secondary btn-lg rounded-pill mx-2 px-4 py-1"
-					onclick="toggleButton(this)"
-					style="border-color: gray; color: gray; font-size: 26px;">겨울</button>
-				<button
-					class="btn btn-primary btn-lg rounded-pill mx-2 custom-button"
-					onclick="toggleButton(this)"
-					style="border-color: green; color: white; font-size: 1.2rem; background-color: green;">검색</button>
-			</div>
-		</div>
-	</div>
-
-	<!-- 페이지간 요청 전달을 위한 Form -->
-	<form name="dataTransferFrom">
-		<input type="hidden" name="categoryInput" value=""> 
-        <input type="hidden" name="detailCodeInput" value="">
-    </form>
-
-
-	<script>
-		function toggleButton(button) {
-			// 첫 페이지 버튼의 텍스트
-			const requestCategory = localStorage.getItem('recommendBtn');
-			// 첫 페이지 버튼의 카테고리 API 이름
-			const category = localStorage.getItem('request');
-			// 현재 페이지에서 선택한 버튼의 텍스트
-			const btnText = button.textContent;
-			// 선택한 세부 항목에 대한 코드
-			const detailCode = categoryCode[requestCategory][btnText];
-
-			console.log("카테고리 : " + category + " 코드 : " + detailCode);
-
-			localStorage.setItem('detailCode', detailCode);
-			localStorage.setItem('choiceBtn', button.textContent);
-
-			with (document.dataTransferFrom){
-				categoryInput.value = category;
-				detailCodeInput.value = detailCode;
-				method = "get";
-				action = "../plantview.jsp";
-				target = "_self";
-				submit();
-			}
-
-			button.classList.toggle('active');
-			button.style.borderColor = button.classList.contains('active') ? 'green'
-					: 'gray';
-			button.style.color = button.classList.contains('active') ? 'white'
-					: 'gray';
-			if (button.classList.contains('active')) {
-				// 선택한 버튼의 텍스트 가져오기
-				let buttonText = button.textContent.trim();
-
-				// 버튼이 '<'인 경우 recommend.jsp로 이동
-				if (buttonText === '<') {
-					window.location.href = '../recommend.jsp';
-				}
-				// } else if (buttonText === '봄') {
-				// 	window.location.href = '../plantview.jsp';
-				// } else if (buttonText === '여름') {
-				// 	window.location.href = '../plantview.jsp';
-				// } else if (buttonText === '가을') {
-				// 	window.location.href = '../plantview.jsp';
-				// } else if (buttonText === '겨울') {
-				// 	window.location.href = '../plantview .jsp';
-				// }
-			}
-		}
-	</script>
-
-
-
-
-
+	<!--코드 작성 종료-->
 
 	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-            <symbol id="instagram" viewBox="0 0 16 16">
-                <path
+        <symbol id="instagram" viewBox="0 0 16 16">
+            <path
 			d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
-            </symbol>
-        </svg>
+        </symbol>
+    </svg>
 
 
 	<footer class="site-footer">
