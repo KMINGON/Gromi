@@ -1,7 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.net.HttpURLConnection"%>
+<%@ page import="java.net.URL"%>
+<%@ page import="javax.xml.parsers.DocumentBuilder"%>
+<%@ page import="javax.xml.parsers.DocumentBuilderFactory"%>
+<%@ page import="org.w3c.dom.Document"%>
+<%@ page import="org.w3c.dom.Element"%>
+<%@ page import="org.w3c.dom.Node"%>
+<%@ page import="org.w3c.dom.NodeList"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%
 String uid = (String) session.getAttribute("user_id");
 String uname = (String) session.getAttribute("user_name");
@@ -138,7 +147,7 @@ String boardType = request.getParameter("boardType");
         </style>
     </head>
 
-    <body>
+    <body>                      
         <nav class="navbar navbar-expand-md navbar-dark bg-dark"
 		aria-label="main-navbar">
 		<div class="container">
@@ -243,7 +252,7 @@ String boardType = request.getParameter("boardType");
           </header>-->
 
         <main>
-
+            
             <section class="container">
                 <div class="row py-lg-5 mx-0">
                     <div class="mx-auto px-0">
@@ -268,136 +277,73 @@ String boardType = request.getParameter("boardType");
                 <div class="container">
 
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="plant_board">
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
-                                    class="bd-placeholder-img card-img-top"
-                                    width="100%"
-                                    height="225"/>
-                                <div class="card-body">
-                                    <p class="card-text">식물 이름 로드중..</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                    </div>
+                    
+            <%
+                String api_key = "20230605N2Y5KYUYQBPOTOUIBCPHSA";
+                String category = request.getParameter("categoryInput");
+                String detailCode = request.getParameter("detailCodeInput");
+                String queryString = category + "=" + detailCode; // Query 값 생성
+    
+                String baseUrl = "http://api.nongsaro.go.kr/service/garden/gardenList?apiKey=" + api_key + "&numOfRows=9";
+                String requestUrl = baseUrl + "&" + queryString;
+            
+                try {
+                    URL url = new URL(requestUrl);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("GET");
+                    connection.connect();
+        
+                    if (connection.getResponseCode() == 200) {
+                        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                        DocumentBuilder builder = factory.newDocumentBuilder();
+                        Document doc = builder.parse(connection.getInputStream());
+            
+                        NodeList items = doc.getElementsByTagName("item");
+            %>
+            
+                <% for (int i = 0; i < items.getLength(); i++) {
+                    Element item = (Element) items.item(i);
+                    String contentNo = item.getElementsByTagName("cntntsNo").item(0).getTextContent();
+                    String name = item.getElementsByTagName("cntntsSj").item(0).getTextContent();
+                    String thumbnail = item.getElementsByTagName("rtnFileUrl").item(0).getTextContent().split("\\|")[0];
+                %>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img src="<%= thumbnail %>"
+                                class="bd-placeholder-img card-img-top"
+                                width="100%"
+                                height="225"/>
+                            <div class="card-body">
+                                <p class="card-text"><%= name %></p>
+                                <div class="d-flex justify-content-between align-items-center">
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
-                                    class="bd-placeholder-img card-img-top"
-                                    width="100%"
-                                    height="225"/>
-                                <div class="card-body">
-                                    <p class="card-text">식물 이름 로드중..</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
-                                    class="bd-placeholder-img card-img-top"
-                                    width="100%"
-                                    height="225"/>
-                                <div class="card-body">
-                                    <p class="card-text">식물 이름 로드중..</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
-                                    class="bd-placeholder-img card-img-top"
-                                    width="100%"
-                                    height="225"/>
-                                <div class="card-body">
-                                    <p class="card-text">식물 이름 로드중..</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
-                                    class="bd-placeholder-img card-img-top"
-                                    width="100%"
-                                    height="225"/>
-                                <div class="card-body">
-                                    <p class="card-text">식물 이름 로드중..</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
-                                    class="bd-placeholder-img card-img-top"
-                                    width="100%"
-                                    height="225"/>
-                                <div class="card-body">
-                                    <p class="card-text">식물 이름 로드중..</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
-                                    class="bd-placeholder-img card-img-top"
-                                    width="100%"
-                                    height="225"/>
-                                <div class="card-body">
-                                    <p class="card-text">식물 이름 로드중..</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
-                                    class="bd-placeholder-img card-img-top"
-                                    width="100%"
-                                    height="225"/>
-                                <div class="card-body">
-                                    <p class="card-text">식물 이름 로드중..</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
-                                    class="bd-placeholder-img card-img-top"
-                                    width="100%"
-                                    height="225"/>
-                                <div class="card-body">
-                                    <p class="card-text">식물 이름 로드중..</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                        
+                    </div>
+                <% } %>
+<%
+        } else {
+            out.print("API request failed!");
+        }
+    } catch (Exception e) {
+        out.print("Error: " + e.getMessage());
+    }
+%>
 
-                       
+                        <%-- <div class="col">
+                            <div class="card shadow-sm">
+                                <img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif"
+                                    class="bd-placeholder-img card-img-top"
+                                    width="100%"
+                                    height="225"/>
+                                <div class="card-body">
+                                    <p class="card-text">식물 이름 로드중..</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --%>
+
                     </div>
                 </div>
             </div>
@@ -464,13 +410,13 @@ String boardType = request.getParameter("boardType");
 
     <script>
         
-        const category = localStorage.getItem('request');
-        const detailCode = localStorage.getItem('detailCode');
-        const queryString = category + "=" + detailCode;
+        // const category = localStorage.getItem('request');
+        // const detailCode = localStorage.getItem('detailCode');
+        // const queryString = category + "=" + detailCode;
 
-        plantApi.recommend(queryString);
+        // plantApi.recommend(queryString);
 
-        console.log(category + "=" + detailCode);
+        // console.log(category + "=" + detailCode);
 
         // const params = {
         //         apiKey: api_key,
