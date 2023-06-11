@@ -156,20 +156,38 @@ String boardType = request.getParameter("boardType");
 		</div>
 	</div>
 
+	<!-- 페이지간 요청 전달을 위한 Form -->
+	<form name="dataTransferFrom">
+		<input type="hidden" name="categoryInput" value=""> 
+        <input type="hidden" name="detailCodeInput" value="">
+    </form>
+
+
 	<script>
 		function toggleButton(button) {
 			// 첫 페이지 버튼의 텍스트
 			const requestCategory = localStorage.getItem('recommendBtn');
+			// 첫 페이지 버튼의 카테고리 API 이름
+			const category = localStorage.getItem('request');
 			// 현재 페이지에서 선택한 버튼의 텍스트
 			const btnText = button.textContent;
 			// 선택한 세부 항목에 대한 코드
 			const detailCode = categoryCode[requestCategory][btnText];
 
-			console.log(requestCategory + "=" + detailCode);
+			console.log("카테고리 : " + category + " 코드 : " + detailCode);
 
 			localStorage.setItem('detailCode', detailCode);
-
 			localStorage.setItem('choiceBtn', button.textContent);
+
+			with (document.dataTransferFrom){
+				categoryInput.value = category;
+				detailCodeInput.value = detailCode;
+				method = "get";
+				action = "../plantview.jsp";
+				target = "_self";
+				submit();
+			}
+
 			button.classList.toggle('active');
 			button.style.borderColor = button.classList.contains('active') ? 'green'
 					: 'gray';
@@ -182,13 +200,14 @@ String boardType = request.getParameter("boardType");
 				// 버튼이 '<'인 경우 recommend.jsp로 이동
 				if (buttonText === '<') {
 					window.location.href = '../recommend.jsp';
-				} else if (buttonText === '낮은 광도') {
-					window.location.href = '../plantview.jsp';
-				} else if (buttonText === '중간 광도') {
-					window.location.href = '../plantview.jsp';
-				} else if (buttonText === '높은 광도') {
-					window.location.href = '../plantview.jsp';
 				}
+				// } else if (buttonText === '낮은 광도') {
+				// 	window.location.href = '../plantview.jsp';
+				// } else if (buttonText === '중간 광도') {
+				// 	window.location.href = '../plantview.jsp';
+				// } else if (buttonText === '높은 광도') {
+				// 	window.location.href = '../plantview.jsp';
+				// }
 			}
 		}
 	</script>

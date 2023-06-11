@@ -231,17 +231,37 @@ translateX(
 	</div>
 	</div>
 
+	<!-- 페이지간 요청 전달을 위한 Form -->
+	<form name="dataTransferFrom">
+		<input type="hidden" name="categoryInput" value=""> 
+        <input type="hidden" name="detailCodeInput" value="">
+    </form>
+
 	<script>
 		function toggleButton(button) {
 			// 첫 페이지 버튼의 텍스트
 			const requestCategory = localStorage.getItem('recommendBtn');
+			// 첫 페이지 버튼의 카테고리 API 이름
+			const category = localStorage.getItem('request');
 			// 현재 페이지에서 선택한 버튼의 텍스트
 			const btnText = button.textContent;
 			// 선택한 세부 항목에 대한 코드
 			const detailCode = categoryCode[requestCategory][btnText];
 
+			console.log("카테고리 : " + category + " 코드 : " + detailCode);
+
 			localStorage.setItem('detailCode', detailCode);
 			localStorage.setItem('choiceBtn', button.textContent);
+
+			with (document.dataTransferFrom){
+				categoryInput.value = category;
+				detailCodeInput.value = detailCode;
+				method = "get";
+				action = "../plantview.jsp";
+				target = "_self";
+				submit();
+			}
+
 			button.classList.toggle('active');
 			button.style.borderColor = button.classList.contains('active') ? 'green'
 					: 'gray';
@@ -254,15 +274,16 @@ translateX(
 				// 버튼이 '<'인 경우 recommend.jsp로 이동
 				if (buttonText === '<') {
 					window.location.href = '../recommend.jsp';
-				} else if (buttonText === '항상 흙을 축축하게 유지(물에 잠김)') {
-					window.location.href = '../plantview.jsp';
-				} else if (buttonText === '흙을 촉촉하게 유지(물에 잠기지 않도록 유지)') {
-					window.location.href = '../plantview.jsp';
-				} else if (buttonText === '토양 표면이 말랐을 때 충분히 관수') {
-					window.location.href = '../plantview.jsp';
-				} else if (buttonText === '화분 흙 대부분 말랐을 때 충분히 관수') {
-					window.location.href = '../plantview.jsp';
 				}
+				// } else if (buttonText === '항상 흙을 축축하게 유지(물에 잠김)') {
+				// 	window.location.href = '../plantview.jsp';
+				// } else if (buttonText === '흙을 촉촉하게 유지(물에 잠기지 않도록 유지)') {
+				// 	window.location.href = '../plantview.jsp';
+				// } else if (buttonText === '토양 표면이 말랐을 때 충분히 관수') {
+				// 	window.location.href = '../plantview.jsp';
+				// } else if (buttonText === '화분 흙 대부분 말랐을 때 충분히 관수') {
+				// 	window.location.href = '../plantview.jsp';
+				// }
 			}
 		}
 	</script>
