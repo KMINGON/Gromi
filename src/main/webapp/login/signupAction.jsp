@@ -25,7 +25,13 @@
 		script.println("alert('비밀번호가 일치하지 않습니다!')");
 		script.println("history.back()");
 		script.println("</script>");
-	} else {
+	} else if(userDAO.findById(id) != null){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('이미 존재하는 아이디입니다!')");
+		script.println("history.back()");
+		script.println("</script>");
+	}else{
 		User user = new User(id, pw, name);
 		userDAO.insert(user);
 		PrintWriter script = response.getWriter();
